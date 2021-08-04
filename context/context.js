@@ -10,16 +10,10 @@ export function AppWrapper({ children }) {
       const indexOfItem = prevState.findIndex(
         (cartItem) => cartItem.item.id === item.id
       );
-      console.log(indexOfItem);
       if (indexOfItem === -1) {
         return [...prevState, { item: item, qty: 1 }];
       }
-      let newqty = cart[indexOfItem].qty + 1;
-      return [
-        ...prevState.slice(0, indexOfItem),
-        ...prevState.slice(indexOfItem + 1),
-        { item: item, qty: newqty },
-      ];
+      increaseItem(item);
     });
   };
 
@@ -28,6 +22,18 @@ export function AppWrapper({ children }) {
       cart.map((cartitem) => {
         if (cartitem.item.id === item.id) {
           return { ...cartitem, qty: cartitem.qty - 1 };
+        } else {
+          return cartitem;
+        }
+      })
+    );
+  };
+
+  const increaseItem = (item) => {
+    setCart(
+      cart.map((cartitem) => {
+        if (cartitem.item.id === item.id) {
+          return { ...cartitem, qty: cartitem.qty + 1 };
         } else {
           return cartitem;
         }
