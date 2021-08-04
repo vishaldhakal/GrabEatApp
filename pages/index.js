@@ -70,16 +70,52 @@ export default function Home() {
       setCartSlider(true);
       setHehehe("hehe");
     }
-    console.log(cart);
   };
 
-  const minusVsDelete = (cartt) => {
+  const inCart = (item) => {
+    let def = false;
+    let cartindex = 0;
+    cart.forEach((element, index) => {
+      if (element.item.id == item.id) {
+        def = true;
+        cartindex = index;
+      }
+    });
+    if (def) {
+      return (
+        <div className="quantity d-flex w-100 justify-content-between">
+          {minusVsDelete(cart[cartindex], "px-4")}
+          <h5 className="mb-0 p-2 px-3">{cart[cartindex].qty}</h5>
+          <button
+            className="btn plus-btn btn-dark px-4"
+            type="button"
+            name="button"
+            onClick={() => addToCart(cart[cartindex].item)}
+          >
+            +
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <button
+          type="button"
+          className="btn btn-mine btn-sm py-2 w-100"
+          onClick={() => addToCart(item)}
+        >
+          Add to cart
+        </button>
+      );
+    }
+  };
+
+  const minusVsDelete = (cartt, haha = " ") => {
     if (cartt.qty == 1) {
       return (
         <button
-          className="btn plus-btn btn-light"
+          className={"btn minus-btn btn-dark " + haha}
           type="button"
-          name="button border"
+          name="button"
           onClick={() => removeFromCart(cartt.item)}
         >
           -
@@ -88,9 +124,9 @@ export default function Home() {
     } else {
       return (
         <button
-          className="btn plus-btn btn-light"
+          className={"btn minus-btn btn-dark " + haha}
           type="button"
-          name="button border"
+          name="button"
           onClick={() => decreaseItem(cartt.item)}
         >
           -
@@ -102,12 +138,19 @@ export default function Home() {
   const listItemsToBuy = () =>
     items.map((item) => (
       <div className="col" key={item.id}>
-        <FoodCard
-          price={item.price}
-          name={item.name}
-          image={item.image}
-          cartbtn={() => addToCart(item)}
-        />
+        <div className="card bg-white m-2 mx-3 border-0 rounded-mine shadow-sm">
+          <img src={item.image} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <div className="d-flex align-items-center justify-content-between">
+              <h5 className="card-title fw-bold">{item.name}</h5>
+              <h5 className="card-title fw-bold">Rs {item.price}</h5>
+            </div>
+            <p className="card-text">About 45 mins to Cook</p>
+            <div className="d-flex align-items-center justify-content-between">
+              {inCart(item)}
+            </div>
+          </div>
+        </div>
       </div>
     ));
 
@@ -466,7 +509,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="col-2">
-                  <button className="btn btn-outline-danger btn py-3 w-100">
+                  <button className="btn shadow-sm bg-mine text-light py-3 w-100">
                     Filter
                   </button>
                 </div>
@@ -476,22 +519,8 @@ export default function Home() {
                     type="button"
                     onClick={cartSliderToggle}
                   >
-                    <svg
-                      aria-hidden="true"
-                      focusable="false"
-                      viewBox="0 0 16 16"
-                      fill="White"
-                      className="smallcart"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M3.666 11.333h10.333l1.334-8h-11l-.267-2h-3.4v2h1.667l1.333 8zm1.333 3.334A1.333 1.333 0 105 12a1.333 1.333 0 000 2.667zm9.334-1.334a1.333 1.333 0 11-2.667 0 1.333 1.333 0 012.667 0z"
-                      ></path>
-                    </svg>
-                    <span className="mx-1"></span>
-                    <span className="badge bg-light text-danger fw-mine p-2 my-2 ms-1 fss">
-                      Cart - Rs 1800
+                    <span className="fw-mine p-2 my-1 ms-1 fss">
+                      {cart.length} Items | Rs {totalAmount()}
                     </span>
                   </button>
                 </div>
@@ -545,7 +574,7 @@ export default function Home() {
                                   {cartitem.qty}
                                 </p>
                                 <button
-                                  className="btn minus-btn btn-light"
+                                  className="btn plus-btn btn-dark"
                                   type="button"
                                   name="button"
                                   onClick={() => addToCart(cartitem.item)}
