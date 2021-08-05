@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
-import FoodCard from "../components/FoodCard";
 import { useAppContext } from "../context/context";
 
 const items = [
@@ -90,7 +89,9 @@ export default function Home() {
             className="btn plus-btn btn-dark px-4"
             type="button"
             name="button"
-            onClick={() => addToCart(cart[cartindex].item)}
+            onClick={() => {
+              addToCart(cart[cartindex].item);
+            }}
           >
             +
           </button>
@@ -101,7 +102,9 @@ export default function Home() {
         <button
           type="button"
           className="btn btn-mine btn-sm py-2 w-100"
-          onClick={() => addToCart(item)}
+          onClick={(e) => {
+            addToCart(item);
+          }}
         >
           Add to cart
         </button>
@@ -113,7 +116,7 @@ export default function Home() {
     if (cartt.qty == 1) {
       return (
         <button
-          className={"btn minus-btn btn-dark " + haha}
+          className={"btn btn-dark text-light " + haha}
           type="button"
           name="button"
           onClick={() => removeFromCart(cartt.item)}
@@ -160,7 +163,13 @@ export default function Home() {
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
       <Navbar />
-      <section className={hehehe}>
+      <div
+        className={hehehe}
+        onClick={() => {
+          cartSliderToggle();
+        }}
+      ></div>
+      <section>
         <div className="row row-cols-3 g-0">
           <div className="col col-1 bg-white position-relative">
             <div className="leftbar d-flex flex-column container-fluid pt-2 hei bg-white px-2">
@@ -491,7 +500,7 @@ export default function Home() {
                       className="form-control fields"
                       id="floatingInput"
                       placeholder="XX-XX"
-                      defaultValue="Any"
+                      defaultValue=" "
                     />
                     <label htmlFor="floatingInput">Price Min</label>
                   </div>
@@ -503,31 +512,39 @@ export default function Home() {
                       className="form-control fields"
                       id="floatingInput2"
                       placeholder="XX-XX"
-                      defaultValue="Any"
+                      defaultValue=" "
                     />
                     <label htmlFor="floatingInput2">Price Max</label>
                   </div>
                 </div>
+                <div className="col-3"></div>
                 <div className="col-2">
-                  <button className="btn shadow-sm bg-mine text-light py-3 w-100">
-                    Filter
-                  </button>
-                </div>
-                <div className="col-3">
                   <button
                     className="btn bg-mine py-1 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
                     type="button"
                     onClick={cartSliderToggle}
                   >
                     <span className="fw-mine p-2 my-1 ms-1 fss">
-                      {cart.length} Items | Rs {totalAmount()}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="25"
+                        height="25"
+                        fill="currentColor"
+                        class="bi bi-cart4"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+                      </svg>{" "}
+                      <span className="badge bg-white text-danger fw-mine fss">
+                        {cart.length} Items
+                      </span>
                     </span>
                   </button>
                 </div>
               </div>
             </div>
             {cartslider && (
-              <div className="rightbar shadow-lg">
+              <div className="rightbar shadow-lg slide-left">
                 <div className="offcanvas-header mt-3">
                   <div id="offcanvasRightLabel">
                     <span>Pending Orders</span>
