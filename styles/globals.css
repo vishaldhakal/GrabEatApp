@@ -103,13 +103,13 @@ body {
 }
 .hei {
   position: sticky;
-  top: 5rem;
+  top: 4.85rem;
   left: 0;
   height: 90vh;
 }
 .hei2 {
   position: sticky;
-  top: 5rem;
+  top: 4.85rem;
   right: 0;
   height: 90vh;
 }

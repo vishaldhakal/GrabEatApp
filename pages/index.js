@@ -517,7 +517,14 @@ export default function Home() {
                     <label htmlFor="floatingInput2">Price Max</label>
                   </div>
                 </div>
-                <div className="col-2"></div>
+                <div className="col-2">
+                  <button
+                    className="btn bg-mine py-3 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
+                    type="button"
+                  >
+                    Filter
+                  </button>
+                </div>
                 <div className="col-3">
                   <button
                     className="btn bg-mine py-1 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
