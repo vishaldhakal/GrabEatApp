@@ -44,12 +44,18 @@ function MyApp({ Component, pageProps }) {
     const adimg = document.getElementById("adimg");
     const closeadbtn = document.getElementById("closead");
     var timer;
-    var millisecBeforeRedirect = 5000;
+    var millisecBeforeRedirect = 7000;
     function timeOutClear() {
       window.clearTimeout(timer);
       adimg.classList.add("d-none");
     }
     window.addEventListener("load", () => {
+      timer = window.setTimeout(function () {
+        adimg.classList.remove("d-none");
+      }, millisecBeforeRedirect);
+    });
+    window.addEventListener("click", () => {
+      timeOutClear();
       timer = window.setTimeout(function () {
         adimg.classList.remove("d-none");
       }, millisecBeforeRedirect);
