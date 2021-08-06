@@ -123,7 +123,7 @@ export default function Orders() {
                       <p className="mb-0 fw-mine">Total : Rs {order.totals}</p>
                     </div>
                     <span className="mx-2"></span>
-                    <button className="btn btn-sm py-2 btn-outline-warning">
+                    <button className="btn btn-sm py-2 btn-outline-success">
                       {order.status}
                     </button>
                   </div>

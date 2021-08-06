@@ -63,7 +63,6 @@ export default function Home() {
           type="button"
           className="btn btn-mine btn-sm py-2 w-100"
           onClick={() => {
-            cartSliderToggle();
             addToCart(item);
           }}
         >
