@@ -1,13 +1,28 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { AppWrapper } from "../context/context";
 import axios from "axios";
 
 function MyApp({ Component, pageProps }) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (data) {
+      const imageele = document.querySelector(".mujiimage");
+      var myVar = setInterval(myTimer, 3000);
+      let i = 0;
+      function myTimer() {
+        imageele.src = `https://grabeatnp.herokuapp.com` + data[i].ad;
+        if (i == data.length - 1) {
+          i = 0;
+        } else {
+          i++;
+        }
+      }
+    }
+  }, [data]);
+
   useEffect(() => {
     var configg = {
       method: "GET",
@@ -22,6 +37,7 @@ function MyApp({ Component, pageProps }) {
         console.log(error);
       });
   }, []);
+
   useEffect(() => {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
@@ -90,18 +106,9 @@ function MyApp({ Component, pageProps }) {
                 Close Advertisement
               </button>
             </div>
-            <div>
-              <Carousel autoPlay>
-                {data.map((dat) => (
-                  <div key={dat.id}>
-                    <img
-                      src={"https://grabeatnp.herokuapp.com" + dat.ad}
-                      className="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                ))}
-              </Carousel>
+
+            <div className="myVideo">
+              <img src="" alt="" className="mujiimage" />
             </div>
           </div>
         </div>
