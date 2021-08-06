@@ -91,13 +91,7 @@ function MyApp({ Component, pageProps }) {
               </button>
             </div>
             <div className="myVideo">
-              <Carousel
-                autoPlay={true}
-                interval={5000}
-                showArrows={false}
-                infiniteLoop={true}
-                stopOnHover={false}
-              >
+              <Carousel autoPlay infiniteLoop>
                 {data.map((dat) => (
                   <div key={dat.id}>
                     <img
