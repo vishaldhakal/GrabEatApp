@@ -155,8 +155,8 @@ body {
 }
 .btn-outline-danger:hover,
 .btn-mine:hover {
-  background-color: red;
-  color: rgb(255, 255, 255);
+  background-color: rgba(255, 0, 0, 0.164);
+  color: red;
 }
 .btn-mine-success {
   background-color: rgba(41, 139, 21, 0.164);
@@ -193,9 +193,6 @@ body {
 }
 .offcanvas-end {
   top: 4.7rem;
-}
-.offcanvas {
-  width: 700px;
 }
 
 .quantity input {
@@ -245,8 +242,7 @@ table tr th {
   border-radius: 3px !important;
 }
 .deletebtn:hover {
-  background-color: red;
-  color: rgb(255, 255, 255);
+  color: red;
   font-weight: 500;
 }
 .fields {

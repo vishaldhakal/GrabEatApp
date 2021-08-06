@@ -1,9 +1,13 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useAppContext } from "../context/context";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Cart() {
+  const [message, setMessage] = useState(null);
+  const route = useRouter();
   const {
     cart,
     setCart,
@@ -13,6 +17,44 @@ export default function Cart() {
     serviceCharge,
     totalAmount,
   } = useAppContext();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      route.push("/login");
+    }
+  }, []);
+
+  const handleSubmission = (e) => {
+    if (cart.length == 0) {
+      setMessage("No any cart items for submission");
+    } else {
+      var payload = JSON.stringify(cart);
+      console.log(payload);
+      var configg = {
+        method: "POST",
+        url: `https://grabeatnp.herokuapp.com/api/submitcart/`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+        mode: "no-cors",
+        data: payload,
+      };
+      axios(configg)
+        .then((res) => {
+          console.log(res.data);
+          setMessage("Order Sucessfully Submitted");
+          setCart([]);
+          route.push("/orders");
+        })
+        .catch(function (error) {
+          console.log(error);
+          setMessage("Error Submitting Order");
+        });
+
+      e.preventDefault();
+    }
+  };
 
   const minusVsDelete = (cartt, haha = " ") => {
     if (cartt.qty == 1) {
@@ -46,69 +88,85 @@ export default function Cart() {
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
       <Navbar />
-      <section class="py-3 bg-light">
-        <div class="container">
-          <div class="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
-            <a href="" class="text-dark text-decoration-none">
+      <section className="py-3 bg-light">
+        <div className="container-fluid px-5">
+          <div className="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
+            <a href="" className="text-dark text-decoration-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
                 fill="currentColor"
-                class="bi bi-arrow-left-short"
+                className="bi bi-arrow-left-short"
                 viewBox="0 0 18 18"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"
                 ></path>
               </svg>
               Back to Menu
             </a>
-            <nav aria-label="breadcrumb" class="ps-0 ps-sm-4">
-              <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                  <a href="/" class="text-dark text-decoration-none">
+            <nav aria-label="breadcrumb" className="ps-0 ps-sm-4">
+              <ol className="breadcrumb mb-0">
+                <li className="breadcrumb-item">
+                  <a href="/" className="text-dark text-decoration-none">
                     Home
                   </a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">
+                <li className="breadcrumb-item active" aria-current="page">
                   Cart
                 </li>
               </ol>
             </nav>
           </div>
         </div>
-        <div class="container shadow-sm bg-white rounded-mine">
-          <div class="row">
-            <div class="col-md-12 cart px-4">
-              <div class="py-5">
-                <div class="row row-cols-5 fw-mine bg-light py-2 align-items-center">
-                  <div class="col-5">Item</div>
-                  <div class="col-2">Quantity</div>
-                  <div class="col-2">Price Each</div>
-                  <div class="col-2">Total</div>
-                  <div class="col-1"></div>
+        <div className="container-fluid px-5">
+          <div className="row  bg-white  shadow-sm rounded-mine">
+            <div className="col-md-12 cart px-4">
+              <div className="py-5">
+                {message && (
+                  <div
+                    className="alert alert-danger d-flex justify-content-between"
+                    role="alert"
+                  >
+                    {message}
+                    <button
+                      type="button"
+                      className="btn-close"
+                      onClick={() => setMessage(null)}
+                    ></button>
+                  </div>
+                )}
+                <div className="row row-cols-5 fw-mine bg-light py-2 align-items-center">
+                  <div className="col-5">Item</div>
+                  <div className="col-2">Quantity</div>
+                  <div className="col-2">Price Each</div>
+                  <div className="col-2">Total</div>
+                  <div className="col-1"></div>
                 </div>
 
                 {cart.map((cartitem, index) => (
                   <div
-                    class="row row-cols-5 mt-3 align-items-center"
+                    className="row row-cols-5 mt-3 align-items-center"
                     key={cartitem.item.id}
                   >
-                    <div class="col-5 d-flex align-items-center">
+                    <div className="col-5 d-flex align-items-center">
                       <img
-                        src={cartitem.item.image}
+                        src={
+                          "https://grabeatnp.herokuapp.com" +
+                          cartitem.item.thumbnail_image
+                        }
                         alt="..."
-                        class="img-fluid small-cart-img"
+                        className="img-fluid small-cart-img"
                       />
-                      <span class="ms-2">
+                      <span className="ms-2">
                         <b>{cartitem.item.name}</b>
                         <br />
                         {cartitem.qty} * {cartitem.item.price}
                       </span>
                     </div>
-                    <div class="col-2">
+                    <div className="col-2">
                       <div className="quantity d-flex justify-content-between align-items-center">
                         {minusVsDelete(cartitem)}
                         <p className="p-2 px-3 bg-white mb-0">{cartitem.qty}</p>
@@ -122,11 +180,11 @@ export default function Cart() {
                         </button>
                       </div>
                     </div>
-                    <div class="col-2">{cartitem.item.price}</div>
-                    <div class="col-2">
+                    <div className="col-2">{cartitem.item.price}</div>
+                    <div className="col-2">
                       {cartitem.item.price * cartitem.qty}
                     </div>
-                    <div class="col-1">
+                    <div className="col-1">
                       <button
                         className="btn deletebtn btn-sm shadow-sm"
                         onClick={() => removeFromCart(cartitem.item)}
@@ -150,47 +208,52 @@ export default function Cart() {
                   </div>
                 ))}
 
-                <div class="row row-cols-5 fw-mine bg-light py-2 align-items-center my-5">
-                  <div class="col-5">Total</div>
-                  <div class="col-2">-</div>
-                  <div class="col-2">-</div>
-                  <div class="col-2">Rs {totalAmount()}</div>
-                  <div class="col-1">-</div>
+                <div className="row row-cols-5 fw-mine bg-light py-2 align-items-center my-5">
+                  <div className="col-5">Total</div>
+                  <div className="col-2">-</div>
+                  <div className="col-2">-</div>
+                  <div className="col-2">Rs {totalAmount()}</div>
+                  <div className="col-1">-</div>
                 </div>
-                <div class="px-1 mt-3">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="fw-mine">Cart Subtotal</h5>
-                    <p class="text-end">Rs {totalAmount()}</p>
+                <div className="px-1 mt-3">
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine">Cart Subtotal</h5>
+                    <p className="text-end">Rs {totalAmount()}</p>
                   </div>
-                  <div class="d-flex justify-content-between">
-                    <h5 class="fw-mine mb-1">Service Charge (13%)</h5>
-                    <p class="text-end mb-1">+ Rs {serviceCharge()}</p>
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine mb-1">Service Charge (13%)</h5>
+                    <p className="text-end mb-1">+ Rs {serviceCharge()}</p>
                   </div>
                   <hr />
-                  <div class="d-flex justify-content-between">
-                    <h5 class="fw-mine">Total Paying Amount</h5>
-                    <p class="text-end">Rs {totalAmount() + serviceCharge()}</p>
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine">Total Paying Amount</h5>
+                    <p className="text-end">
+                      Rs {totalAmount() + serviceCharge()}
+                    </p>
                   </div>
                 </div>
-                <div class="d-flex justify-content-between mt-3">
+                <div className="d-flex justify-content-between mt-3">
                   <button
-                    class="btn btn-dark btn-lg"
+                    className="btn btn-dark btn-lg"
                     onClick={() => setCart([])}
                   >
                     Empty Cart
                   </button>
-                  <button class="btn bg-mine text-light btn-lg">
+                  <button
+                    className="btn bg-mine text-light btn-lg"
+                    onClick={(e) => handleSubmission(e)}
+                  >
                     Submit order now
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
                       height="20"
                       fill="currentColor"
-                      class="bi bi-arrow-right"
+                      className="bi bi-arrow-right"
                       viewBox="0 0 20 20"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
                       />
                     </svg>

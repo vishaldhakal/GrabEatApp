@@ -1,56 +1,16 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useAppContext } from "../context/context";
-
-const items = [
-  {
-    id: 1,
-    name: "Banana Pancake",
-    price: 200,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-  {
-    id: 2,
-    name: "Chicken Momo",
-    price: 320,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-  {
-    id: 3,
-    name: "Chicken Pizza",
-    price: 500,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-  {
-    id: 4,
-    name: "Chicken Sizzler",
-    price: 450,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-  {
-    id: 5,
-    name: "Mutton Biryaini",
-    price: 550,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-  {
-    id: 6,
-    name: "Veg Chowmein",
-    price: 300,
-    image:
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80",
-  },
-];
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [cartslider, setCartSlider] = useState(false);
   const [hehehe, setHehehe] = useState(null);
+  const [dataa, setDataa] = useState([]);
+  const route = useRouter();
+
   const {
     cart,
     setCart,
@@ -140,16 +100,20 @@ export default function Home() {
   };
 
   const listItemsToBuy = () =>
-    items.map((item) => (
+    dataa.map((item) => (
       <div className="col" key={item.id}>
         <div className="card bg-white m-2 mx-3 border-0 rounded-mine shadow-sm">
-          <img src={item.image} className="card-img-top" alt="..." />
+          <img
+            src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
+            className="card-img-top"
+            alt="..."
+          />
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
               <h5 className="card-title fw-bold">{item.name}</h5>
               <h5 className="card-title fw-bold">Rs {item.price}</h5>
             </div>
-            <p className="card-text">About 45 mins to Cook</p>
+            <p className="card-text">{item.small_note}</p>
             <div className="d-flex align-items-center justify-content-between">
               {inCart(item)}
             </div>
@@ -157,6 +121,29 @@ export default function Home() {
         </div>
       </div>
     ));
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      route.push("/login");
+    } else {
+      var configg = {
+        method: "GET",
+        url: `https://grabeatnp.herokuapp.com/api/foodlists/`,
+        headers: {
+          "Content-Type": "text/plain",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+        mode: "no-cors",
+      };
+      axios(configg)
+        .then((res) => {
+          setDataa(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, []);
 
   return (
     <>

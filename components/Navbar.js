@@ -30,8 +30,13 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item me-2">
-                <Link href="/payment">
+                <Link href="#">
                   <a className="nav-link">Payment</a>
+                </Link>
+              </li>
+              <li className="nav-item me-2">
+                <Link href="/login">
+                  <a className="nav-link">Account</a>
                 </Link>
               </li>
               <li className="nav-item me-4">
@@ -40,7 +45,7 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link menubtn" href="#">
+                <button className="btn nav-link menubtn">
                   <svg
                     width="21"
                     height="17"
@@ -67,7 +72,7 @@ export default function Navbar() {
                       </clipPath>
                     </defs>
                   </svg>
-                </a>
+                </button>
               </li>
             </ul>
           </div>
