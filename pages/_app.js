@@ -90,8 +90,8 @@ function MyApp({ Component, pageProps }) {
                 Close Advertisement
               </button>
             </div>
-            <div className="myVideo">
-              <Carousel autoPlay infiniteLoop>
+            <div>
+              <Carousel autoPlay>
                 {data.map((dat) => (
                   <div key={dat.id}>
                     <img
