@@ -7,6 +7,10 @@ import { useRouter } from "next/router";
 
 export default function Cart() {
   const [message, setMessage] = useState(null);
+  const [ordernote, setOrdernote] = useState("");
+  const handdd = (e) => {
+    setOrdernote(e.target.innerHTML);
+  };
   const route = useRouter();
   const {
     cart,
@@ -25,6 +29,7 @@ export default function Cart() {
   }, []);
 
   const handleSubmission = (e) => {
+    e.target.innerHTML = `Submitting...`;
     if (cart.length == 0) {
       setMessage("No any cart items for submission");
     } else {
@@ -51,9 +56,10 @@ export default function Cart() {
           console.log(error);
           setMessage("Error Submitting Order");
         });
-
-      e.preventDefault();
     }
+    setTimeout(function () {
+      e.target.innerHTML = `Submit order now`;
+    }, 500);
   };
 
   const minusVsDelete = (cartt, haha = " ") => {
@@ -214,6 +220,22 @@ export default function Cart() {
                   <div className="col-2">-</div>
                   <div className="col-2">Rs {totalAmount()}</div>
                   <div className="col-1">-</div>
+                </div>
+                <div className="py-3">
+                  <div class="row">
+                    <div class="mb-3 col-12">
+                      <textarea
+                        type="text"
+                        name="message"
+                        id="message"
+                        placeholder="Enter your Order Note (if any)"
+                        class="fields mess w-100"
+                        onChange={(e) => handdd(e)}
+                      >
+                        {ordernote}
+                      </textarea>
+                    </div>
+                  </div>
                 </div>
                 <div className="px-1 mt-3">
                   <div className="d-flex justify-content-between">

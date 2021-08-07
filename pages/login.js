@@ -125,7 +125,7 @@ export default function Orders() {
         )}
         {logedin && (
           <section className="container col-12 col-sm-6 col-md-5 col-lg-4">
-            <h5 className="mb-4">
+            <h5 className="mb-4 text-center">
               Loged in as : {localStorage.getItem("username")}
             </h5>
             <button

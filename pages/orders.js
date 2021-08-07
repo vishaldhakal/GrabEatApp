@@ -80,7 +80,7 @@ export default function Orders() {
           </div>
         </div>
         <div className="container-fluid px-4 rounded-mine">
-          <div className="row row-cols-3">
+          <div className="row row-cols-3 gy-4">
             {orders.map((order, index) => (
               <div className="col" key={order.id}>
                 <div className="rounded-mine bg-white shadow-sm p-3">

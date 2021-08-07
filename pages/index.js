@@ -9,6 +9,7 @@ export default function Home() {
   const [cartslider, setCartSlider] = useState(false);
   const [hehehe, setHehehe] = useState(null);
   const [dataa, setDataa] = useState([]);
+  const [message, setMessage] = useState(null);
   const route = useRouter();
   const [categories, setCategories] = useState([]);
   const [credentials, setcredentials] = useState({
@@ -25,7 +26,41 @@ export default function Home() {
     }));
   };
 
+  const handleSubmission = (e) => {
+    e.target.innerHTML = `Submitting...`;
+    if (cart.length == 0) {
+      setMessage("No any cart items for submission");
+    } else {
+      var payload = JSON.stringify(cart);
+      var configg = {
+        method: "POST",
+        url: `https://grabeatnp.herokuapp.com/api/submitcart/`,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+        mode: "no-cors",
+        data: payload,
+      };
+      axios(configg)
+        .then((res) => {
+          console.log(res.data);
+          setMessage("Order Sucessfully Submitted");
+          setCart([]);
+          route.push("/orders");
+        })
+        .catch(function (error) {
+          console.log(error);
+          setMessage("Error Submitting Order");
+        });
+    }
+    setTimeout(function () {
+      e.target.innerHTML = `Submit order now`;
+    }, 500);
+  };
+
   const handleSubmit = (e) => {
+    e.target.innerHTML = "Filtering...";
     var configg = {
       method: "GET",
       credentials: "include",
@@ -39,6 +74,9 @@ export default function Home() {
       .catch(function (error) {
         console.log(error);
       });
+    setTimeout(function () {
+      e.target.innerHTML = "Filter";
+    }, 500);
   };
 
   const {
@@ -599,6 +637,19 @@ export default function Home() {
                   ></button>
                 </div>
                 <div className="offcanvas-body">
+                  {message && (
+                    <div
+                      className="alert alert-danger d-flex justify-content-between my-4"
+                      role="alert"
+                    >
+                      {message}
+                      <button
+                        type="button"
+                        className="btn-close"
+                        onClick={() => setMessage(null)}
+                      ></button>
+                    </div>
+                  )}
                   <div className="tabh position-relative">
                     <table className="table table-borderless table-striped  mb-0">
                       <thead className="sticky-top bg-mine text-light fw-mine">
@@ -692,7 +743,10 @@ export default function Home() {
                     >
                       Empty Cart
                     </button>
-                    <button className="btn bg-mine text-light btn-lg">
+                    <button
+                      className="btn bg-mine text-light btn-lg"
+                      onClick={(e) => handleSubmission(e)}
+                    >
                       Submit order now
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
