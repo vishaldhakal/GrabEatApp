@@ -10,6 +10,36 @@ export default function Home() {
   const [hehehe, setHehehe] = useState(null);
   const [dataa, setDataa] = useState([]);
   const route = useRouter();
+  const [categories, setCategories] = useState([]);
+  const [credentials, setcredentials] = useState({
+    category: "All",
+    min: "",
+    max: "",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setcredentials((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    var configg = {
+      method: "GET",
+      credentials: "include",
+      url: `https://grabeatnp.herokuapp.com/api/foodlists_search/?category=${credentials.category}&min=${credentials.min}&max=${credentials.max}`,
+      headers: { "Content-Type": "application/json" },
+    };
+    axios(configg)
+      .then((res) => {
+        setDataa(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const {
     cart,
@@ -137,6 +167,18 @@ export default function Home() {
       axios(configg)
         .then((res) => {
           setDataa(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      var configg2 = {
+        method: "GET",
+        url: `https://grabeatnp.herokuapp.com/api/categorylists/`,
+        mode: "no-cors",
+      };
+      axios(configg2)
+        .then((res) => {
+          setCategories(res.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -467,15 +509,15 @@ export default function Home() {
                   <div className="form-floating">
                     <select
                       className="form-select fields"
-                      id="floatingSelect"
+                      id="category"
                       aria-label="Floating label select example"
-                      defaultValue="Foods"
+                      value={credentials.category}
+                      onChange={(e) => handleChange(e)}
                     >
-                      <option value="1">Foods</option>
-                      <option value="2">Drinks</option>
-                      <option value="3">Snacks</option>
-                      <option value="4">Deserts</option>
-                      <option value="5">Combos</option>
+                      <option value="All">All</option>
+                      {categories.map((cat) => (
+                        <option value={cat.name}>{cat.name}</option>
+                      ))}
                     </select>
                     <label htmlFor="floatingSelect">Select Category</label>
                   </div>
@@ -483,11 +525,12 @@ export default function Home() {
                 <div className="col-2">
                   <div className="form-floating">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control fields"
-                      id="floatingInput"
+                      id="min"
                       placeholder="XX-XX"
-                      defaultValue=" "
+                      value={credentials.min}
+                      onChange={(e) => handleChange(e)}
                     />
                     <label htmlFor="floatingInput">Price Min</label>
                   </div>
@@ -495,11 +538,12 @@ export default function Home() {
                 <div className="col-2">
                   <div className="form-floating">
                     <input
-                      type="text"
+                      type="number"
                       className="form-control fields"
-                      id="floatingInput2"
+                      id="max"
                       placeholder="XX-XX"
-                      defaultValue=" "
+                      value={credentials.max}
+                      onChange={(e) => handleChange(e)}
                     />
                     <label htmlFor="floatingInput2">Price Max</label>
                   </div>
@@ -508,6 +552,7 @@ export default function Home() {
                   <button
                     className="btn bg-mine py-3 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
                     type="button"
+                    onClick={(e) => handleSubmit(e)}
                   >
                     Filter
                   </button>

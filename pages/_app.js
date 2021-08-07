@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if (data) {
       const imageele = document.querySelector(".mujiimage");
-      var myVar = setInterval(myTimer, 3000);
+      var myVar = setInterval(myTimer, 4000);
       let i = 0;
       function myTimer() {
         imageele.src = `https://grabeatnp.herokuapp.com` + data[i].ad;
@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }) {
     const adimg = document.getElementById("adimg");
     const closeadbtn = document.getElementById("closead");
     var timer;
-    var millisecBeforeRedirect = 7000;
+    var millisecBeforeRedirect = 10000;
     function timeOutClear() {
       window.clearTimeout(timer);
       adimg.classList.add("d-none");

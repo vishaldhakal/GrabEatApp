@@ -356,14 +356,14 @@ table tr th {
   top: 0;
   left: 0;
   background-image: linear-gradient(to bottom right, red, yellow);
-  z-index: 2;
+  z-index: 9998;
 }
 .hidden {
   display: none;
 }
 .closea {
   position: fixed;
-  top: 90px;
+  top: 20px;
   right: 10px;
   z-index: 9999;
 }
