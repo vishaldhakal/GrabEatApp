@@ -766,7 +766,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="row row-cols-3 gx-0 mx-0 gy-3 pt-4">
+            <div className="row row-cols-3 gx-0 mx-0 gy-3 pt-4 px-5">
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
