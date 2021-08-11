@@ -452,32 +452,32 @@ table tr th {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-@-webkit-keyframes shine {
+@keyframes shine {
   to {
     background-position-x: -200%;
   }
 }
 
-@-webkit-keyframes slidetop2 {
+@keyframes slidetop2 {
   100% {
     margin-top: 0px;
   }
 }
 
-@-webkit-keyframes slidetop {
+@keyframes slidetop {
   100% {
     right: 2%;
     bottom: -60%;
   }
 }
 
-@-webkit-keyframes slide {
+@keyframes slide {
   100% {
     right: 0;
   }
 }
 
-@-webkit-keyframes fade {
+@keyframes fade {
   100% {
     background: rgba(0, 0, 0, 0.568);
   }

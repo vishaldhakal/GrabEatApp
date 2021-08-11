@@ -10,7 +10,7 @@ export default function Navbar() {
               GRAB EAT.
             </a>
           </div>
-          <div>
+          <div className="d-none d-md-block">
             <ul className="mynav me-auto mb-2 mb-lg-0 d-flex">
               <li className="nav-item me-2">
                 <Link href="/">
