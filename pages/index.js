@@ -187,7 +187,7 @@ export default function Home() {
   const listItemsToBuy = () =>
     dataa.map((item) => (
       <div className="col" key={item.id}>
-        <div className="card bg-white m-2 mx-3 border-0 rounded-mine shadow-sm is-loading">
+        <div className="card bg-white m-2 mx-1 border-0 rounded-mine shadow-sm is-loading">
           <img
             src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
             className="card-img-top image"
@@ -795,7 +795,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="row row-cols-3 gx-0 mx-0 gy-3 pt-4 px-5">
+            <div className="row row-cols-3 gx-0 mx-0 gy-3 pt-4 px-1 px-lg-5">
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
