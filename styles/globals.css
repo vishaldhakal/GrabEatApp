@@ -383,6 +383,94 @@ table tr th {
 .mess:focus {
   outline-color: black;
 }
+
+.add-to-cart-cover {
+  box-shadow: 0 0rem 2rem #ff000054;
+  width: 50px;
+  height: 50px;
+  border-radius: 50% 0% 50% 50%;
+  background: #ffffff;
+  position: absolute;
+  right: 90%;
+  bottom: -60%;
+  transform: translateY(50%) rotate(-45deg);
+  margin: -20px 0 0 -20px;
+  -webkit-animation-name: slidetop;
+  -moz-animation-name: slidetop;
+  -o-animation-name: slidetop;
+  -ms-animation-name: slidetop;
+  animation-name: slidetop;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  animation-duration: 1s;
+}
+.add-to-cart-image {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.is-loading .image {
+  background: #eee;
+  background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  -webkit-animation: 1.5s shine linear infinite;
+  animation: 1.5s shine linear infinite;
+}
+.is-loading .image {
+  height: 200px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bagIcon___1Ywzd {
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+}
+.bagHighlighted___3nqc4 {
+  background-image: url(/cart.svg);
+}
+.absoluteCenter {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+@-webkit-keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+@-webkit-keyframes slidetop2 {
+  100% {
+    margin-top: 0px;
+  }
+}
+
+@-webkit-keyframes slidetop {
+  100% {
+    right: 2%;
+    bottom: -60%;
+  }
+}
+
 @-webkit-keyframes slide {
   100% {
     right: 0;

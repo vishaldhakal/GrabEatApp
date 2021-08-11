@@ -60,7 +60,7 @@ function MyApp({ Component, pageProps }) {
     const adimg = document.getElementById("adimg");
     const closeadbtn = document.getElementById("closead");
     var timer;
-    var millisecBeforeRedirect = 10000;
+    var millisecBeforeRedirect = 150000;
     function timeOutClear() {
       window.clearTimeout(timer);
       adimg.classList.add("d-none");

@@ -17,6 +17,23 @@ export default function Home() {
     min: "",
     max: "",
   });
+  const [addcart, setaddcart] = useState({
+    display: "d-none",
+    image: "",
+  });
+
+  const beforeCart = (ite) => {
+    setaddcart({
+      display: "",
+      image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
+    });
+    setTimeout(function () {
+      setaddcart({
+        display: "d-none",
+        image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
+      });
+    }, 3000);
+  };
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -132,6 +149,7 @@ export default function Home() {
           className="btn btn-mine btn-sm py-2 w-100"
           onClick={() => {
             addToCart(item);
+            beforeCart(item);
           }}
         >
           Add to cart
@@ -169,11 +187,11 @@ export default function Home() {
   const listItemsToBuy = () =>
     dataa.map((item) => (
       <div className="col" key={item.id}>
-        <div className="card bg-white m-2 mx-3 border-0 rounded-mine shadow-sm">
+        <div className="card bg-white m-2 mx-3 border-0 rounded-mine shadow-sm is-loading">
           <img
             src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
-            className="card-img-top"
-            alt="..."
+            className="card-img-top image"
+            alt="Food Image Loading"
           />
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between">
@@ -595,25 +613,36 @@ export default function Home() {
                     Filter
                   </button>
                 </div>
-                <div className="col-3">
+                <div className="col-3 d-flex justify-content-end">
                   <button
-                    className="btn bg-mine py-1 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
+                    className="btn bg-mine py-1 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
                     type="button"
                     onClick={cartSliderToggle}
                   >
-                    <span className="fw-mine p-2 my-1 ms-1 fss">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="25"
-                        height="25"
-                        fill="currentColor"
-                        className="bi bi-cart4"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
-                      </svg>{" "}
+                    <div className={"add-to-cart-cover " + addcart.display}>
+                      <img
+                        src={addcart.image}
+                        alt="food image"
+                        className="add-to-cart-image"
+                      />
+                    </div>
+                    <span className="fw-mine p-2 ms-1 fss d-flex align-items-center">
+                      <span className="position-relative">
+                        <span
+                          aria-hidden="true"
+                          class="bagIcon___1Ywzd bagHighlighted___3nqc4"
+                        ></span>
+                        <span
+                          aria-hidden="true"
+                          class="text-sm text-bold text-center absoluteCenter text-danger"
+                          data-e2e="cart-order-count"
+                        >
+                          {cart.length}
+                        </span>
+                      </span>
+                      <span className="mx-1"></span>
                       <span className="badge bg-white text-danger fw-mine fss">
-                        {cart.length} Items
+                        Cart | Rs {totalAmount()}
                       </span>
                     </span>
                   </button>
