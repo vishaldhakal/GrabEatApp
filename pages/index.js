@@ -630,11 +630,11 @@ export default function Home() {
                       <span className="position-relative">
                         <span
                           aria-hidden="true"
-                          class="bagIcon___1Ywzd bagHighlighted___3nqc4"
+                          className="bagIcon___1Ywzd bagHighlighted___3nqc4"
                         ></span>
                         <span
                           aria-hidden="true"
-                          class="text-sm text-bold text-center absoluteCenter text-danger"
+                          className="text-sm text-bold text-center absoluteCenter text-danger"
                           data-e2e="cart-order-count"
                         >
                           {cart.length}

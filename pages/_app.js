@@ -6,7 +6,6 @@ import axios from "axios";
 
 function MyApp({ Component, pageProps }) {
   const [data, setData] = useState(null);
-
   useEffect(() => {
     if (data) {
       const imageele = document.querySelector(".mujiimage");
@@ -60,7 +59,7 @@ function MyApp({ Component, pageProps }) {
     const adimg = document.getElementById("adimg");
     const closeadbtn = document.getElementById("closead");
     var timer;
-    var millisecBeforeRedirect = 150000;
+    var millisecBeforeRedirect = 10000;
     function timeOutClear() {
       window.clearTimeout(timer);
       adimg.classList.add("d-none");
