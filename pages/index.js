@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { useAppContext } from "../context/context";
 import axios from "axios";
 import { useRouter } from "next/router";
+import ScrollFade from "@benestudioco/react-scrollfade";
 
 export default function Home() {
   const [cartslider, setCartSlider] = useState(false);
@@ -680,6 +681,7 @@ export default function Home() {
                     </div>
                   )}
                   <div className="tabh position-relative">
+                    <ScrollFade />
                     <table className="table table-borderless table-striped  mb-0">
                       <thead className="sticky-top bg-mine text-light fw-mine">
                         <tr>
@@ -795,7 +797,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 gx-0 mx-0 gy-3 pt-4 px-1 px-lg-5">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 gx-0 mx-0 gy-3 pt-4 px-1 px-lg-5">
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
