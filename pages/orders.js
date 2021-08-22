@@ -6,13 +6,56 @@ import { useRouter } from "next/router";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
+  const [method, setMethod] = useState("Manually Paid");
   const [orderstotal, setOrderstotal] = useState(0);
+  const [message, setMessage] = useState(null);
+
   function serviceCharge() {
     let charge = (13 / 100) * orderstotal;
     return Math.floor(charge);
   }
 
+  const handleChangeMethod = (e) => {
+    const { id, value } = e.target;
+    setMethod(value);
+  };
+
+  const checkStatus = (stat) => {
+    if (stat == "Unpaid") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const route = useRouter();
+
+  const handlePayment = (e) => {
+    const payment = {
+      paymentmethod: method,
+    };
+    var payload = JSON.stringify(payment);
+    var configg = {
+      method: "POST",
+      url: `https://grabeatnp.herokuapp.com/api/payorders/`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      mode: "no-cors",
+      data: payload,
+    };
+    axios(configg)
+      .then((res) => {
+        console.log(res.data);
+        setMessage("Payment Sucessfully Submitted");
+        route.push("/orders");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setMessage("Error Submitting Payment");
+      });
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -36,7 +79,8 @@ export default function Orders() {
           console.log(error);
         });
     }
-  }, []);
+  }, [message]);
+
   return (
     <>
       <Head>
@@ -80,14 +124,33 @@ export default function Orders() {
           </div>
         </div>
         <div className="container-fluid px-4 rounded-mine">
+          <div className="my-3">
+            {message && (
+              <div
+                className="alert alert-danger d-flex justify-content-between"
+                role="alert"
+              >
+                {message}
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setMessage(null)}
+                ></button>
+              </div>
+            )}
+          </div>
           <div className="row row-cols-3 gy-4">
             {orders.map((order, index) => (
               <div className="col" key={order.id}>
                 <div className="rounded-mine bg-white shadow-sm p-3">
                   <div className="d-flex justify-content-between align-items-center border-bottom pb-2">
                     <div>
-                      <h5 className="fw-mine mb-0">Order : {index + 1}</h5>
-                      <p className="mb-0">By : {order.user.username}</p>
+                      <h5 className="fw-mine mb-0">Order {index + 1}</h5>
+                      <p className="mb-0">
+                        Payment : {order.payment_status}{" "}
+                        {checkStatus(order.payment_status) &&
+                          order.payment_method}
+                      </p>
                     </div>
                     <img src="/avatar.png" alt="" className="img-fluid w-25" />
                   </div>
@@ -153,9 +216,29 @@ export default function Orders() {
               <p className="text-end">Rs {orderstotal + serviceCharge()}</p>
             </div>
           </div>
-          <button className="btn bg-mine text-light btn-lg w-100 mt-4">
-            Pay For The Orders Now
-          </button>
+          <div className="d-flex justify-content-between">
+            <div className="form-floating w-100 mt-4">
+              <select
+                className="form-select bg-white"
+                id="category"
+                aria-label="Floating label select example"
+                value={method}
+                onChange={(e) => handleChangeMethod(e)}
+              >
+                <option value="Manually paid">Manually paid</option>
+                <option value="Esewa">Esewa</option>
+                <option value="Mobile Banking">Mobile Banking</option>
+              </select>
+              <label htmlFor="floatingSelect">Select Payment Method</label>
+            </div>
+            <span className="mx-2"></span>
+            <button
+              className="btn bg-mine text-light btn-lg w-100 mt-4"
+              onClick={(e) => handlePayment(e)}
+            >
+              Pay For The Orders Now
+            </button>
+          </div>
         </div>
       </section>
     </>

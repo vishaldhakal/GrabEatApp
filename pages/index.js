@@ -77,33 +77,6 @@ export default function Home() {
     }, 500);
   };
 
-  const handlePayment = (e) => {
-    const payment = {
-      paymentmethod: "Esewa",
-    };
-    var payload = JSON.stringify(payment);
-    var configg = {
-      method: "POST",
-      url: `https://grabeatnp.herokuapp.com/api/payorders/`,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${localStorage.getItem("token")}`,
-      },
-      mode: "no-cors",
-      data: payload,
-    };
-    axios(configg)
-      .then((res) => {
-        console.log(res.data);
-        setMessage("Order Sucessfully Submitted");
-        route.push("/orders");
-      })
-      .catch(function (error) {
-        console.log(error);
-        setMessage("Error Submitting Order");
-      });
-  };
-
   const handleSubmit = (e) => {
     e.target.innerHTML = "Filtering...";
     var configg = {
@@ -828,7 +801,6 @@ export default function Home() {
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
-            <button onClick={(e) => handlePayment(e)}>Haha</button>
           </div>
         </div>
       </section>
