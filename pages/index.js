@@ -33,7 +33,7 @@ export default function Home() {
         display: "d-none",
         image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
       });
-    }, 3000);
+    }, 600);
   };
 
   const handleChange = (e) => {
@@ -75,6 +75,33 @@ export default function Home() {
     setTimeout(function () {
       e.target.innerHTML = `Submit order now`;
     }, 500);
+  };
+
+  const handlePayment = (e) => {
+    const payment = {
+      paymentmethod: "Esewa",
+    };
+    var payload = JSON.stringify(payment);
+    var configg = {
+      method: "POST",
+      url: `https://grabeatnp.herokuapp.com/api/payorders/`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      mode: "no-cors",
+      data: payload,
+    };
+    axios(configg)
+      .then((res) => {
+        console.log(res.data);
+        setMessage("Order Sucessfully Submitted");
+        route.push("/orders");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setMessage("Error Submitting Order");
+      });
   };
 
   const handleSubmit = (e) => {
@@ -801,6 +828,7 @@ export default function Home() {
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
+            <button onClick={(e) => handlePayment(e)}>Haha</button>
           </div>
         </div>
       </section>

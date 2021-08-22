@@ -393,7 +393,7 @@ table tr th {
   position: absolute;
   right: 90%;
   bottom: -60%;
-  transform: translateY(50%) rotate(-45deg);
+  transform: translateY(50%) rotate(-45deg) scale(3);
   margin: -20px 0 0 -20px;
   -webkit-animation-name: slidetop;
   -moz-animation-name: slidetop;
@@ -405,11 +405,11 @@ table tr th {
   -o-animation-fill-mode: both;
   -ms-animation-fill-mode: both;
   animation-fill-mode: both;
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  -ms-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+  -moz-animation-duration: 0.5s;
+  -o-animation-duration: 0.5s;
+  -ms-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 .add-to-cart-image {
   width: 40px;
@@ -468,6 +468,7 @@ table tr th {
   100% {
     right: 2%;
     bottom: -60%;
+    transform: translateY(50%) rotate(-45deg) scale(1);
   }
 }
 
