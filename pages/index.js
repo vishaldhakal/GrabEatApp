@@ -11,12 +11,12 @@ export default function Home() {
   const [hehehe, setHehehe] = useState(null);
   const [dataa, setDataa] = useState([]);
   const [message, setMessage] = useState(null);
+  const [refetch, setRefetch] = useState(false);
   const route = useRouter();
   const [categories, setCategories] = useState([]);
   const [credentials, setcredentials] = useState({
     category: "All",
-    min: "",
-    max: "",
+    sorting: "1",
   });
   const [addcart, setaddcart] = useState({
     display: "d-none",
@@ -34,14 +34,6 @@ export default function Home() {
         image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
       });
     }, 600);
-  };
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setcredentials((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
   };
 
   const handleSubmission = (e) => {
@@ -77,24 +69,13 @@ export default function Home() {
     }, 500);
   };
 
-  const handleSubmit = (e) => {
-    e.target.innerHTML = "Filtering...";
-    var configg = {
-      method: "GET",
-      credentials: "include",
-      url: `https://grabeatnp.herokuapp.com/api/foodlists_search/?category=${credentials.category}&min=${credentials.min}&max=${credentials.max}`,
-      headers: { "Content-Type": "application/json" },
-    };
-    axios(configg)
-      .then((res) => {
-        setDataa(res.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    setTimeout(function () {
-      e.target.innerHTML = "Filter";
-    }, 500);
+  const handleChangeSubmit = (e) => {
+    const { id, value } = e.target;
+    setcredentials((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+    setRefetch(!refetch);
   };
 
   const {
@@ -214,7 +195,7 @@ export default function Home() {
     } else {
       var configg = {
         method: "GET",
-        url: `https://grabeatnp.herokuapp.com/api/foodlists/`,
+        url: `https://grabeatnp.herokuapp.com/api/foodlists_search/?category=${credentials.category}&sorting=${credentials.sorting}`,
         headers: {
           "Content-Type": "text/plain",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -241,7 +222,7 @@ export default function Home() {
           console.log(error);
         });
     }
-  }, []);
+  }, [refetch]);
 
   return (
     <>
@@ -561,7 +542,7 @@ export default function Home() {
           </div>
           <div className="col col-11 position-relative">
             <div className="py-4 bg-white w-100 hei3">
-              <div className="row row-cols-5 gx-3 mx-0">
+              <div className="row row-cols-5 gx-5 mx-0">
                 <div className="col-3">
                   <div className="form-floating">
                     <select
@@ -569,7 +550,7 @@ export default function Home() {
                       id="category"
                       aria-label="Floating label select example"
                       value={credentials.category}
-                      onChange={(e) => handleChange(e)}
+                      onChange={(e) => handleChangeSubmit(e)}
                     >
                       <option value="All">All</option>
                       {categories.map((cat) => (
@@ -579,41 +560,22 @@ export default function Home() {
                     <label htmlFor="floatingSelect">Select Category</label>
                   </div>
                 </div>
-                <div className="col-2">
+                <div className="col-3">
                   <div className="form-floating">
-                    <input
-                      type="number"
-                      className="form-control fields"
-                      id="min"
-                      placeholder="XX-XX"
-                      value={credentials.min}
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <label htmlFor="floatingInput">Price Min</label>
+                    <select
+                      className="form-select fields"
+                      id="sorting"
+                      aria-label="Floating label select example2"
+                      value={credentials.sorting}
+                      onChange={(e) => handleChangeSubmit(e)}
+                    >
+                      <option value="1">Price Low to High</option>
+                      <option value="2">Price High to Low</option>
+                    </select>
+                    <label htmlFor="floatingSelect">Sort Food by Price</label>
                   </div>
                 </div>
-                <div className="col-2">
-                  <div className="form-floating">
-                    <input
-                      type="number"
-                      className="form-control fields"
-                      id="max"
-                      placeholder="XX-XX"
-                      value={credentials.max}
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <label htmlFor="floatingInput2">Price Max</label>
-                  </div>
-                </div>
-                <div className="col-2">
-                  <button
-                    className="btn bg-mine py-3 w-100 text-light fw-mine d-flex align-items-center justify-content-center cart-button"
-                    type="button"
-                    onClick={(e) => handleSubmit(e)}
-                  >
-                    Filter
-                  </button>
-                </div>
+                <div className="col-3"></div>
                 <div className="col-3 d-flex justify-content-end">
                   <button
                     className="btn bg-mine py-1 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
