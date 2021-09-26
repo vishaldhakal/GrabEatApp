@@ -452,6 +452,47 @@ table tr th {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.main-cont::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.main-cont {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  scroll-behavior: smooth;
+}
+.car-item {
+  text-decoration: none;
+  font-weight: 500;
+  color: #000000;
+  font-size: 1rem;
+  background-color: #f8f9fa !important;
+  width: 100%;
+  border-radius: 5px;
+}
+.car-item-active {
+  background-color: #272829 !important;
+  box-shadow: 0 0.2rem 0.3rem rgb(130 133 133 / 10%) !important;
+  color: rgb(255, 255, 255);
+}
+.car-item:hover {
+  background-color: #272829 !important;
+  box-shadow: 0 0.2rem 0.3rem rgb(130 133 133 / 10%) !important;
+  color: rgb(255, 255, 255);
+}
+.btn-scroll {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  border: none !important;
+  color: #000000 /*ff6200*/ !important;
+  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+  box-shadow: none !important;
+}
+.hh {
+  right: 0%;
+}
 @keyframes shine {
   to {
     background-position-x: -200%;
