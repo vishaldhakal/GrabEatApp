@@ -24,16 +24,24 @@ body {
 .accordion-button:focus {
   -webkit-box-shadow: none !important;
   outline: -webkit-focus-ring-color auto 0px !important;
-  border-color: #ff0000;
+  border-color: #ffffff;
 }
 .fw-mine {
   font-weight: 500 !important;
 }
 .bg-mine {
-  background-image: linear-gradient(90deg, #ff0000, #ff6200);
+  /* background-image: linear-gradient(90deg, #ff0000, #ff6200); */
+  background-color: #045762;
+}
+.bg-mine2 {
+  /* background-image: linear-gradient(90deg, #ff0000, #ff6200); */
+  background-color: #5c8d89;
+}
+.text-mine2 {
+  color: #045762;
 }
 .text-mine {
-  color: #ff0000;
+  color: #ffffff;
 }
 .navbar-brand {
   font-weight: bold;
@@ -47,12 +55,12 @@ body {
 }
 .mynav li a:hover {
   background: white;
-  color: red;
+  color: #045762;
   border-radius: 5px;
 }
 .nav-item .active {
   background: white;
-  color: red;
+  color: #045762;
   border-radius: 5px;
 }
 .waitercallbtn {
@@ -86,7 +94,7 @@ body {
 }
 .sidebar-link:hover {
   color: white;
-  background-image: linear-gradient(90deg, #ff0045, #ff9300);
+  background-color: #045762;
 }
 .sidebar-link:hover svg {
   fill: white !important;
@@ -97,7 +105,7 @@ body {
   width: 30px;
 }
 .active-sidebar {
-  background-image: linear-gradient(90deg, #ff0045, #ff9300);
+  background-color: #045762;
   color: white;
   fill: white !important;
 }
@@ -147,16 +155,22 @@ body {
   background-color: red;
 }
 .btn-mine {
-  background-color: rgba(255, 0, 0, 0.075);
-  color: red;
-  font-weight: 600 !important;
+  background-color: #f8f9fa;
+  color: #222221;
+  font-weight: 500 !important;
   border-radius: 5px !important;
+  border: 1px solid rgb(43, 44, 43);
   /* padding: 0.65rem; */
 }
 .btn-outline-danger:hover,
 .btn-mine:hover {
-  background-color: rgba(255, 0, 0, 0.164);
-  color: red;
+  background-color: #5c8d89;
+  color: rgb(255, 255, 255);
+  border-color: #5c8d89;
+}
+.g-mine {
+  --bs-gutter-y: 2rem !important;
+  --bs-gutter-x: 2rem !important;
 }
 .btn-mine-success {
   background-color: rgba(41, 139, 21, 0.164);

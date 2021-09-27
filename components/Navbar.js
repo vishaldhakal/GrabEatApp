@@ -54,15 +54,15 @@ export default function Navbar() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <g clipPath="url(#clip0)">
-                      <path d="M0 1H20.537" stroke="#FF0000" strokeWidth="2" />
+                      <path d="M0 1H20.537" stroke="#045762" strokeWidth="2" />
                       <path
                         d="M0 8.08499H20.537"
-                        stroke="#FF0000"
+                        stroke="#045762"
                         strokeWidth="2"
                       />
                       <path
                         d="M0 15.169H20.537"
-                        stroke="#FF0000"
+                        stroke="#045762"
                         strokeWidth="2"
                       />
                     </g>

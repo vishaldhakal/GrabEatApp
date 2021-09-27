@@ -1,4 +1,3 @@
-import Link from "../components/ActiveLink";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
@@ -23,34 +22,6 @@ export default function Home() {
     display: "d-none",
     image: "",
   });
-  const [showLeftScroll, setshowLeftScroll] = useState(false);
-  function rightScrollClick() {
-    let scrollDiv = document.querySelector(".main-cont");
-    scrollDiv.scroll({
-      left: (scrollDiv.scrollLeft += 150),
-      top: 0,
-      behavior: "smooth",
-    });
-    if (scrollDiv.scrollLeft != 0) {
-      setshowLeftScroll(true);
-    } else {
-      setshowLeftScroll(false);
-    }
-  }
-
-  function leftScrollClick() {
-    let scrollDiv = document.querySelector(".main-cont");
-    scrollDiv.scroll({
-      left: (scrollDiv.scrollLeft -= 150),
-      top: 0,
-      behavior: "smooth",
-    });
-    if (scrollDiv.scrollLeft != 0) {
-      setshowLeftScroll(true);
-    } else {
-      setshowLeftScroll(false);
-    }
-  }
 
   const beforeCart = (ite) => {
     setaddcart({
@@ -198,7 +169,7 @@ export default function Home() {
   const listItemsToBuy = () =>
     dataa.map((item) => (
       <div className="col" key={item.id}>
-        <div className="card bg-white m-2 mx-2 border-0 rounded-mine shadow-sm is-loading">
+        <div className="card bg-white border-0 rounded-mine shadow-sm is-loading">
           <img
             src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
             className="card-img-top image"
@@ -266,92 +237,49 @@ export default function Home() {
         }}
       ></div>
       <section>
-        <div className="row row-cols-1 g-0">
-          <div className="col col-12 position-relative">
+        <div className="row row-cols-2 g-0">
+          <div className="col col-2 bg-white position-relative"></div>
+          <div className="col col-10 position-relative">
             <div className="py-4 bg-white w-100 hei3">
               <div className="row row-cols-5 gx-5 mx-0">
-                <div className="col-9">
-                  <div className="d-flex justify-content-start align-items-center flex-direction-column position-relative">
-                    {showLeftScroll && (
-                      <button
-                        className="btn btn-scroll px-2 position-absolute h-100"
-                        onClick={leftScrollClick}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          className="bi bi-chevron-left"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
-                          />
-                        </svg>
-                      </button>
-                    )}
-                    <div className="main-cont d-flex overflow-scroll">
-                      <Link href="/" activeClassName="car-item-active">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Toronto
-                        </a>
-                      </Link>
-                      <Link href="/brampton">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Brampton
-                        </a>
-                      </Link>
-                      <Link href="/mississauga">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Mississauga
-                        </a>
-                      </Link>
-                      <Link href="/brampton">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Brampton
-                        </a>
-                      </Link>
-                      <Link href="/mississauga">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Mississauga
-                        </a>
-                      </Link>
-                      <Link href="/brampton">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Brampton
-                        </a>
-                      </Link>
-                      <Link href="/mississauga">
-                        <a className="car-item p-3 px-3 px-md-3 px-lg-4 mx-2">
-                          Mississauga
-                        </a>
-                      </Link>
-                    </div>
-                    <button
-                      className="btn btn-scroll rounded-0 h-100 position-absolute px-2 hh"
-                      onClick={rightScrollClick}
+                <div className="col-3">
+                  <div className="form-floating">
+                    <select
+                      className="form-select fields"
+                      id="category"
+                      aria-label="Floating label select example"
+                      value={credentials.category}
+                      onChange={(e) => handleChangeSubmit(e)}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className="bi bi-chevron-right"
-                        viewBox="0 0 16 16"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                        />
-                      </svg>
-                    </button>
+                      <option value="All">All</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.name}>
+                          {cat.name}
+                        </option>
+                      ))}
+                    </select>
+                    <label htmlFor="floatingSelect">Select Category</label>
                   </div>
                 </div>
+                <div className="col-3">
+                  <div className="form-floating">
+                    <select
+                      className="form-select fields"
+                      id="sorting"
+                      aria-label="Floating label select example2"
+                      value={credentials.sorting}
+                      onChange={(e) => handleChangeSubmit(e)}
+                    >
+                      <option value="1">Price Low to High</option>
+                      <option value="2">Price High to Low</option>
+                    </select>
+                    <label htmlFor="floatingSelect">Sort Food by Price</label>
+                  </div>
+                </div>
+                <div className="col-3"></div>
                 <div className="col-3 d-flex justify-content-end">
                   <button
-                    className="btn bg-mine py-1 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
+                    className="btn bg-mine2 py-0 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
                     type="button"
                     onClick={cartSliderToggle}
                   >
@@ -370,14 +298,14 @@ export default function Home() {
                         ></span>
                         <span
                           aria-hidden="true"
-                          className="text-sm text-bold text-center absoluteCenter text-danger"
+                          className="text-sm text-bold text-center absoluteCenter text-mine2"
                           data-e2e="cart-order-count"
                         >
                           {cart.length}
                         </span>
                       </span>
                       <span className="mx-1"></span>
-                      <span className="badge bg-white text-danger fw-mine fss">
+                      <span className="badge bg-white text-mine2 fw-mine fss">
                         Cart | Rs {totalAmount()}
                       </span>
                     </span>
@@ -532,7 +460,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxl-5 gx-4 mx-0 gy-3 pt-4 px-1 px-lg-5">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-mine mx-0 pt-4 px-3">
               {listItemsToBuy()}
             </div>
             <div className="py-5"></div>
