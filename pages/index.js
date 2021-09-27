@@ -238,46 +238,222 @@ export default function Home() {
       ></div>
       <section>
         <div className="row row-cols-2 g-0">
-          <div className="col col-2 bg-white position-relative"></div>
+          <div className="col col-2 bg-mine3 position-relative">
+            <div className="d-flex flex-column py-4 px-3">
+              <h5 className="mb-4 pb-2 desm">Menu Categories</h5>
+              <button className="btn bg-mine py-2 text-light d-flex justify-content-between mb-3">
+                <span>All</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Foods</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Drinks</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Lunch</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Beverages</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Coffees</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Arabic</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Tibetian</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Spicy</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
+                <span>Vegeterian</span>
+                <span>
+                  <svg
+                    width="8"
+                    height="12"
+                    viewBox="0 0 8 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
           <div className="col col-10 position-relative">
             <div className="py-4 bg-white w-100 hei3">
               <div className="row row-cols-5 gx-5 mx-0">
-                <div className="col-3">
-                  <div className="form-floating">
-                    <select
-                      className="form-select fields"
-                      id="category"
-                      aria-label="Floating label select example"
-                      value={credentials.category}
-                      onChange={(e) => handleChangeSubmit(e)}
-                    >
-                      <option value="All">All</option>
-                      {categories.map((cat) => (
-                        <option key={cat.id} value={cat.name}>
-                          {cat.name}
-                        </option>
-                      ))}
-                    </select>
-                    <label htmlFor="floatingSelect">Select Category</label>
-                  </div>
+                <div className="col-5">
+                  <form className="d-flex">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control py-3"
+                        placeholder="Search your food"
+                        aria-label="Search your food"
+                        aria-describedby="basic-addon2"
+                      />
+                      <span class="input-group-text" id="basic-addon2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-search"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                      </span>
+                    </div>
+                  </form>
                 </div>
                 <div className="col-3">
-                  <div className="form-floating">
-                    <select
-                      className="form-select fields"
-                      id="sorting"
-                      aria-label="Floating label select example2"
-                      value={credentials.sorting}
-                      onChange={(e) => handleChangeSubmit(e)}
-                    >
-                      <option value="1">Price Low to High</option>
-                      <option value="2">Price High to Low</option>
-                    </select>
-                    <label htmlFor="floatingSelect">Sort Food by Price</label>
-                  </div>
+                  <select
+                    className="form-select fields py-3"
+                    id="sorting"
+                    aria-label="Floating label select example2"
+                    value={credentials.sorting}
+                    onChange={(e) => handleChangeSubmit(e)}
+                  >
+                    <option value="1">Price Low to High</option>
+                    <option value="2">Price High to Low</option>
+                  </select>
                 </div>
-                <div className="col-3"></div>
-                <div className="col-3 d-flex justify-content-end">
+                <div className="col-4 d-flex justify-content-end">
                   <button
                     className="btn bg-mine2 py-0 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
                     type="button"
@@ -460,6 +636,7 @@ export default function Home() {
                 </div>
               </div>
             )}
+            <div className="my-2"></div>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-mine mx-0 pt-4 px-3">
               {listItemsToBuy()}
             </div>
