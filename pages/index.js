@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "../components/ActiveLink";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useAppContext } from "../context/context";
@@ -74,6 +75,14 @@ export default function Home() {
     setcredentials((prevState) => ({
       ...prevState,
       [id]: value,
+    }));
+    setRefetch(!refetch);
+  };
+
+  const handleCategoryChange = (item) => {
+    setcredentials((prevState) => ({
+      ...prevState,
+      ["category"]: item.name,
     }));
     setRefetch(!refetch);
   };
@@ -166,6 +175,14 @@ export default function Home() {
     }
   };
 
+  const retClass = (itemm) => {
+    if (itemm.name == credentials.category) {
+      return "bg-mine text-light";
+    } else {
+      return "bg-white text-dark";
+    }
+  };
+
   const listItemsToBuy = () =>
     dataa.map((item) => (
       <div className="col" key={item.id}>
@@ -241,7 +258,13 @@ export default function Home() {
           <div className="col col-2 bg-mine3 position-relative">
             <div className="d-flex flex-column py-4 px-3 leftbar hei">
               <h5 className="mb-4 pb-2 desm">Menu Categories</h5>
-              <button className="btn bg-mine py-2 text-light d-flex justify-content-between mb-3">
+              <button
+                className={
+                  "btn py-2 d-flex justify-content-between mb-3 " +
+                  retClass({ name: "All" })
+                }
+                onClick={() => handleCategoryChange({ name: "All" })}
+              >
                 <span>All</span>
                 <span>
                   <svg
@@ -258,159 +281,32 @@ export default function Home() {
                   </svg>
                 </span>
               </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Foods</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Drinks</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Lunch</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Beverages</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Coffees</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Arabic</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Tibetian</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Spicy</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <button className="btn bg-light py-2 text-dark d-flex justify-content-between mb-3">
-                <span>Vegeterian</span>
-                <span>
-                  <svg
-                    width="8"
-                    height="12"
-                    viewBox="0 0 8 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              </button>
+              {categories.map((item) => (
+                <button
+                  className={
+                    "btn py-2 d-flex justify-content-between mb-3 " +
+                    retClass(item)
+                  }
+                  key={item.id}
+                  onClick={() => handleCategoryChange(item)}
+                >
+                  <span>{item.name}</span>
+                  <span>
+                    <svg
+                      width="8"
+                      height="12"
+                      viewBox="0 0 8 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0.590088 10.59L5.17009 6L0.590088 1.41L2.00009 0L8.00009 6L2.00009 12L0.590088 10.59Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
           <div className="col col-10 position-relative">
