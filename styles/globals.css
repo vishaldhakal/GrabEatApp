@@ -210,7 +210,12 @@ body {
 .offcanvas-end {
   top: 4.7rem;
 }
-
+.posabs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
 .quantity input {
   -webkit-appearance: none;
   border: none;

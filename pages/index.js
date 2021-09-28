@@ -9,6 +9,7 @@ import ScrollFade from "@benestudioco/react-scrollfade";
 
 export default function Home() {
   const [cartslider, setCartSlider] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [hehehe, setHehehe] = useState(null);
   const [dataa, setDataa] = useState([]);
   const [message, setMessage] = useState(null);
@@ -210,6 +211,7 @@ export default function Home() {
     if (!localStorage.getItem("token")) {
       route.push("/login");
     } else {
+      setLoading(true);
       var configg = {
         method: "GET",
         url: `https://grabeatnp.herokuapp.com/api/foodlists_search/?category=${credentials.category}&sorting=${credentials.sorting}`,
@@ -238,6 +240,9 @@ export default function Home() {
         .catch(function (error) {
           console.log(error);
         });
+      setTimeout(function () {
+        setLoading(false);
+      }, 1000);
     }
   }, [refetch]);
 
@@ -534,7 +539,12 @@ export default function Home() {
             )}
             <div className="my-2"></div>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-mine mx-0 pt-4 px-3">
-              {listItemsToBuy()}
+              {loading && (
+                <div className="posabs text-center">
+                  <div className="spinner-border" role="status"></div>
+                </div>
+              )}
+              {!loading && listItemsToBuy()}
             </div>
             <div className="py-5"></div>
           </div>
