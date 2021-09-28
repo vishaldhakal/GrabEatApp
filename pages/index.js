@@ -270,7 +270,7 @@ export default function Home() {
                 }
                 onClick={() => handleCategoryChange({ name: "All" })}
               >
-                <span>All</span>
+                <span>All Categories</span>
                 <span>
                   <svg
                     width="8"
@@ -315,19 +315,22 @@ export default function Home() {
             </div>
           </div>
           <div className="col col-10 position-relative">
-            <div className="py-3 bg-mine3 w-100 hei3">
+            <div className="py-4 bg-mine3 w-100 hei3">
               <div className="row row-cols-5 gx-5 mx-0">
                 <div className="col-5">
                   <form className="d-flex">
                     <div className="input-group">
                       <input
                         type="text"
-                        className="form-control py-3"
+                        className="form-control py-3 border-0 leftt"
                         placeholder="Search your food"
                         aria-label="Search your food"
                         aria-describedby="basic-addon2"
                       />
-                      <span className="input-group-text" id="basic-addon2">
+                      <span
+                        className="input-group-text bg-mine2 text-light border-0 rightt"
+                        id="basic-addon2"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="40"
@@ -344,7 +347,7 @@ export default function Home() {
                 </div>
                 <div className="col-3">
                   <select
-                    className="form-select py-3"
+                    className="form-select py-3 shadow-sm border-0"
                     id="sorting"
                     aria-label="Floating label select example2"
                     value={credentials.sorting}

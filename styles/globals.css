@@ -7,7 +7,7 @@
   letter-spacing: 0.2px;
 }
 body {
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 }
 
 .form-control:focus,
@@ -37,7 +37,7 @@ body {
   background-color: #5c8d89;
 }
 .bg-mine3 {
-  background-color: #e6e6e6;
+  background-color: #f8f9fa;
 }
 .text-mine2 {
   color: #045762;
@@ -56,8 +56,8 @@ body {
   font-size: 1rem;
 }
 .mynav li a:hover {
-  background: white;
-  color: #045762;
+  background: #045762;
+  color: #ffffff;
   border-radius: 5px;
 }
 .nav-item .active {
@@ -157,11 +157,10 @@ body {
   background-color: red;
 }
 .btn-mine {
-  background-color: #f8f9fa;
-  color: #222221;
+  background-color: #e4e5e5;
+  color: #000000;
   font-weight: 500 !important;
   border-radius: 5px !important;
-  border: 1px solid rgb(43, 44, 43);
   /* padding: 0.65rem; */
 }
 .btn-outline-danger:hover,
@@ -522,7 +521,14 @@ table tr th {
   padding: 0.5rem 0.5rem;
   display: inline-block;
 }
-
+.leftt {
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+}
+.rightt {
+  border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+}
 @keyframes shine {
   to {
     background-position-x: -200%;
