@@ -3,38 +3,38 @@ import Link from "./ActiveLink";
 export default function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-dark bg-mine py-3 sticky-top">
+      <nav className="navbar navbar-dark bg-light py-3 sticky-top">
         <div className="container-fluid d-flex justify-content-between">
           <div>
-            <a href="/" className="navbar-brand">
-              GRAB EAT.
+            <a href="/" className="navbar-brand text-dark">
+              Digital Menu
             </a>
           </div>
           <div className="d-none d-md-block">
             <ul className="mynav me-auto mb-2 mb-lg-0 d-flex">
-              <li className="nav-item me-2">
+              <li className="nav-item me-3">
                 <Link href="/">
                   <a className="nav-link" aria-current="page">
                     Menu
                   </a>
                 </Link>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-3">
                 <Link href="/cart">
                   <a className="nav-link">Cart</a>
                 </Link>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-3">
                 <Link href="/orders">
                   <a className="nav-link">Orders</a>
                 </Link>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-3">
                 <Link href="#">
                   <a className="nav-link">Payment</a>
                 </Link>
               </li>
-              <li className="nav-item me-2">
+              <li className="nav-item me-3">
                 <Link href="/login">
                   <a className="nav-link">Account</a>
                 </Link>

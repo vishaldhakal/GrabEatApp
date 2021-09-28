@@ -239,7 +239,7 @@ export default function Home() {
       <section>
         <div className="row row-cols-2 g-0">
           <div className="col col-2 bg-mine3 position-relative">
-            <div className="d-flex flex-column py-4 px-3">
+            <div className="d-flex flex-column py-4 px-3 leftbar hei">
               <h5 className="mb-4 pb-2 desm">Menu Categories</h5>
               <button className="btn bg-mine py-2 text-light d-flex justify-content-between mb-3">
                 <span>All</span>
@@ -414,25 +414,25 @@ export default function Home() {
             </div>
           </div>
           <div className="col col-10 position-relative">
-            <div className="py-4 bg-white w-100 hei3">
+            <div className="py-3 bg-mine3 w-100 hei3">
               <div className="row row-cols-5 gx-5 mx-0">
                 <div className="col-5">
                   <form className="d-flex">
-                    <div class="input-group">
+                    <div className="input-group">
                       <input
                         type="text"
-                        class="form-control py-3"
+                        className="form-control py-3"
                         placeholder="Search your food"
                         aria-label="Search your food"
                         aria-describedby="basic-addon2"
                       />
-                      <span class="input-group-text" id="basic-addon2">
+                      <span className="input-group-text" id="basic-addon2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="40"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-search"
+                          className="bi bi-search"
                           viewBox="0 0 16 16"
                         >
                           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -443,7 +443,7 @@ export default function Home() {
                 </div>
                 <div className="col-3">
                   <select
-                    className="form-select fields py-3"
+                    className="form-select py-3"
                     id="sorting"
                     aria-label="Floating label select example2"
                     value={credentials.sorting}
