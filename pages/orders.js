@@ -211,22 +211,26 @@ export default function Orders() {
                       className="d-flex justify-content-between"
                       key={item.id}
                     >
-                      <h5 className="fw-mine">Order : {index + 1}</h5>
+                      <h5 className="fw-mine fs-mine">Order : {index + 1}</h5>
                       <p className="text-end">Rs {item.totals}</p>
                     </div>
                   ))}
                   <hr />
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine">Total Orders Amount</h5>
+                    <h5 className="fw-mine fs-mine">Total Orders Amount</h5>
                     <p className="text-end">Rs {orderstotal}</p>
                   </div>
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine mb-1">Service Charge (13%)</h5>
-                    <p className="text-end mb-1">+ Rs {serviceCharge()}</p>
+                    <h5 className="fw-mine mb-1 fs-mine">
+                      Service Charge (13%)
+                    </h5>
+                    <p className="text-end mb-1 fs-mine">
+                      + Rs {serviceCharge()}
+                    </p>
                   </div>
                   <hr />
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine">Total Paying Amount</h5>
+                    <h5 className="fw-mine fs-mine">Total Paying Amount</h5>
                     <p className="text-end">
                       Rs {orderstotal + serviceCharge()}
                     </p>

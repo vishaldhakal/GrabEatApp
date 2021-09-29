@@ -90,9 +90,9 @@ export default function Cart() {
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
       <Navbar shadow="bg-light" />
-      <section className="py-3">
+      <section className="py-3 mt-3">
         <div className="container-fluid px-5">
-          <div className="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
+          <div className="d-flex align-items-sm-center flex-column flex-sm-row">
             <a href="" className="text-dark text-decoration-none">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -222,16 +222,18 @@ export default function Cart() {
               <div className="myps3">
                 <div className="px-1">
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine">Cart Subtotal</h5>
+                    <h5 className="fs-mine fw-mine">Cart Subtotal</h5>
                     <p className="text-end">Rs {totalAmount()}</p>
                   </div>
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine mb-1">Service Charge (13%)</h5>
+                    <h5 className="fs-mine fw-mine mb-1">
+                      Service Charge (13%)
+                    </h5>
                     <p className="text-end mb-1">+ Rs {serviceCharge()}</p>
                   </div>
                   <hr />
                   <div className="d-flex justify-content-between">
-                    <h5 className="fw-mine">Total Paying Amount</h5>
+                    <h5 className="fs-mine fw-mine">Total Paying Amount</h5>
                     <p className="text-end">
                       Rs {totalAmount() + serviceCharge()}
                     </p>

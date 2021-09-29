@@ -307,9 +307,12 @@ table tr th {
 }
 .bg-light-green {
   border-radius: 999999px !important;
-  background-color: #0457622d;
+  background-color: #0457621a;
   color: #045762;
   font-size: 0.9rem;
+}
+.fs-mine {
+  font-size: 1rem !important;
 }
 .small-cart-img {
   height: 70px !important;
