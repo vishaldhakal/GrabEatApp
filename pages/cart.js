@@ -7,10 +7,6 @@ import { useRouter } from "next/router";
 
 export default function Cart() {
   const [message, setMessage] = useState(null);
-  const [ordernote, setOrdernote] = useState("");
-  const handdd = (e) => {
-    setOrdernote(e.target.innerHTML);
-  };
   const route = useRouter();
   const {
     cart,
@@ -93,8 +89,8 @@ export default function Cart() {
       <Head>
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
-      <Navbar />
-      <section className="py-3 bg-light">
+      <Navbar shadow="bg-light" />
+      <section className="py-3">
         <div className="container-fluid px-5">
           <div className="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
             <a href="" className="text-dark text-decoration-none">
@@ -128,8 +124,8 @@ export default function Cart() {
           </div>
         </div>
         <div className="container-fluid px-5">
-          <div className="row  bg-white  shadow-sm rounded-mine">
-            <div className="col-md-12 cart px-4">
+          <div className="row row-cols-1 row-cols-md-2 bg-white rounded-mine">
+            <div className="col-12 col-md-8 cart px-4">
               <div className="py-5">
                 {message && (
                   <div
@@ -152,9 +148,9 @@ export default function Cart() {
                   <div className="col-1"></div>
                 </div>
 
-                {cart.map((cartitem, index) => (
+                {cart.map((cartitem) => (
                   <div
-                    className="row row-cols-5 mt-3 align-items-center"
+                    className="row row-cols-5 mt-4 align-items-center"
                     key={cartitem.item.id}
                   >
                     <div className="col-5 d-flex align-items-center">
@@ -166,7 +162,7 @@ export default function Cart() {
                         alt="..."
                         className="img-fluid small-cart-img"
                       />
-                      <span className="ms-2">
+                      <span className="ms-3">
                         <b>{cartitem.item.name}</b>
                         <br />
                         {cartitem.qty} * {cartitem.item.price}
@@ -213,7 +209,6 @@ export default function Cart() {
                     </div>
                   </div>
                 ))}
-
                 <div className="row row-cols-5 fw-mine bg-light py-2 align-items-center my-5">
                   <div className="col-5">Total</div>
                   <div className="col-2">-</div>
@@ -221,23 +216,11 @@ export default function Cart() {
                   <div className="col-2">Rs {totalAmount()}</div>
                   <div className="col-1">-</div>
                 </div>
-                <div className="py-3">
-                  <div class="row">
-                    <div class="mb-3 col-12">
-                      <textarea
-                        type="text"
-                        name="message"
-                        id="message"
-                        placeholder="Enter your Order Note (if any)"
-                        class="fields mess w-100"
-                        onChange={(e) => handdd(e)}
-                      >
-                        {ordernote}
-                      </textarea>
-                    </div>
-                  </div>
-                </div>
-                <div className="px-1 mt-3">
+              </div>
+            </div>
+            <div className="col-12 col-md-4 py-5">
+              <div className="myps3">
+                <div className="px-1">
                   <div className="d-flex justify-content-between">
                     <h5 className="fw-mine">Cart Subtotal</h5>
                     <p className="text-end">Rs {totalAmount()}</p>
@@ -254,18 +237,12 @@ export default function Cart() {
                     </p>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between mt-3">
-                  <button
-                    className="btn btn-dark btn-lg"
-                    onClick={() => setCart([])}
-                  >
-                    Empty Cart
-                  </button>
+                <div className="d-flex flex-column justify-content-between mt-3">
                   <button
                     className="btn bg-mine text-light btn-lg"
                     onClick={(e) => handleSubmission(e)}
                   >
-                    Submit order now
+                    Submit order now &nbsp;&nbsp;
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="20"
@@ -279,6 +256,12 @@ export default function Cart() {
                         d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
                       />
                     </svg>
+                  </button>
+                  <button
+                    className="btn btn-light shadow-sm btn-lg mt-4"
+                    onClick={() => setCart([])}
+                  >
+                    Empty Cart
                   </button>
                 </div>
               </div>

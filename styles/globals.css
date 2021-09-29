@@ -236,9 +236,15 @@ body {
 }
 
 .normal-link:hover {
-  color: red;
-  border-bottom: 2px solid red;
+  color: #045762;
+  border-bottom: 2px solid #045762;
   text-decoration: none;
+}
+.myps3 {
+  position: sticky;
+  top: 7rem;
+  right: 0;
+  z-index: 99 !important;
 }
 .tabh {
   max-height: 300px !important;
@@ -299,10 +305,15 @@ table tr th {
     opacity: 0;
   }
 }
-
+.bg-light-green {
+  border-radius: 999999px !important;
+  background-color: #0457622d;
+  color: #045762;
+  font-size: 0.9rem;
+}
 .small-cart-img {
-  height: 80px !important;
-  width: 100px !important;
+  height: 70px !important;
+  width: 80px !important;
   object-fit: cover;
   object-position: center;
   border-radius: 4px !important;

@@ -242,7 +242,7 @@ export default function Home() {
         });
       setTimeout(function () {
         setLoading(false);
-      }, 1000);
+      }, 500);
     }
   }, [refetch]);
 
@@ -399,9 +399,9 @@ export default function Home() {
                   <div id="offcanvasRightLabel">
                     <span>Pending Orders</span>
                     <span className="mx-2">|</span>{" "}
-                    <a href="#" className="normal-link">
-                      View Submitted Orders
-                    </a>
+                    <Link href="/orders">
+                      <a className="normal-link">View Submitted Orders</a>
+                    </Link>
                   </div>
                   <button
                     type="button"
@@ -512,7 +512,7 @@ export default function Home() {
                   </div>
                   <div className="d-flex justify-content-between mt-3">
                     <button
-                      className="btn btn-dark btn-lg"
+                      className="btn btn-light shadow-sm btn-lg"
                       onClick={() => setCart([])}
                     >
                       Empty Cart
@@ -521,7 +521,7 @@ export default function Home() {
                       className="btn bg-mine text-light btn-lg"
                       onClick={(e) => handleSubmission(e)}
                     >
-                      Submit order now
+                      Submit order now &nbsp;&nbsp;
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"

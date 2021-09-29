@@ -86,8 +86,8 @@ export default function Orders() {
       <Head>
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
-      <Navbar />
-      <section className="py-3 bg-light">
+      <Navbar shadow="bg-light" />
+      <section className="py-3">
         <div className="container-fluid px-4">
           <div className="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
             <a
@@ -139,105 +139,126 @@ export default function Orders() {
               </div>
             )}
           </div>
-          <div className="row row-cols-3 gy-4">
-            {orders.map((order, index) => (
-              <div className="col" key={order.id}>
-                <div className="rounded-mine bg-white shadow-sm p-3">
-                  <div className="d-flex justify-content-between align-items-center border-bottom pb-2">
-                    <div>
-                      <h5 className="fw-mine mb-0">Order {index + 1}</h5>
-                      <p className="mb-0">
-                        Payment : {order.payment_status}{" "}
-                        {checkStatus(order.payment_status) &&
-                          order.payment_method}
-                      </p>
-                    </div>
-                    <img src="/avatar.png" alt="" className="img-fluid w-25" />
-                  </div>
-                  {order.orderitems.map((item) => (
-                    <div
-                      className="d-flex justify-content-start align-items-center mt-4"
-                      key={item.food_item.id}
-                    >
-                      <img
-                        src={
-                          "https://grabeatnp.herokuapp.com" +
-                          item.food_item.thumbnail_image
-                        }
-                        alt=""
-                        className="img-fluid small-cart-img"
-                      />
-                      <span className="mx-2"></span>
-                      <div>
-                        <h5 className="fw-mine mb-0 small-text">
-                          {item.food_item.name}
-                        </h5>
-                        <p className="mb-0 fw-mine">
-                          Rs {item.food_item.price} * {item.no_of_items}
-                        </p>
+          <div className="row row-cols-1 row-cols-md-2 bg-white rounded-mine">
+            <div className="col-12 col-md-8 cart px-4">
+              <div className="row row-cols-2 gy-4">
+                {orders.map((order, index) => (
+                  <div className="col" key={order.id}>
+                    <div className="rounded-mine p-3 bg-light">
+                      <div className="d-flex justify-content-between align-items-center border-bottom pb-2">
+                        <div>
+                          <h5 className="fw-mine mb-0">Order {index + 1}</h5>
+                          <p className="mb-0 mt-2 px-2 bg-light-green">
+                            Payment : {order.payment_status}{" "}
+                            {checkStatus(order.payment_status) &&
+                              order.payment_method}
+                          </p>
+                        </div>
+                        <img
+                          src="/avatar.png"
+                          alt=""
+                          className="img-fluid w-25"
+                        />
+                      </div>
+                      {order.orderitems.map((item) => (
+                        <div
+                          className="d-flex justify-content-start align-items-center mt-4"
+                          key={item.food_item.id}
+                        >
+                          <img
+                            src={
+                              "https://grabeatnp.herokuapp.com" +
+                              item.food_item.thumbnail_image
+                            }
+                            alt=""
+                            className="img-fluid small-cart-img"
+                          />
+                          <span className="mx-2"></span>
+                          <div>
+                            <h5 className="fw-mine mb-0 small-text">
+                              {item.food_item.name}
+                            </h5>
+                            <p className="mb-0 fw-mine">
+                              Rs {item.food_item.price} * {item.no_of_items}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                        <div>
+                          <h5 className="fw-mine mb-0 small-text">
+                            {order.orderitems.length} Items
+                          </h5>
+                          <p className="mb-0 fw-mine">
+                            Total : Rs {order.totals}
+                          </p>
+                        </div>
+                        <span className="mx-2"></span>
+                        <button className="btn btn-sm py-2 btn-success">
+                          {order.status}
+                        </button>
                       </div>
                     </div>
-                  ))}
-                  <div className="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
-                    <div>
-                      <h5 className="fw-mine mb-0 small-text">
-                        {order.orderitems.length} Items
-                      </h5>
-                      <p className="mb-0 fw-mine">Total : Rs {order.totals}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="col-12 col-md-4 py-5">
+              <div className="myps3 shadow-sm p-3 rounded-mine">
+                <div className="px-4 bg-white rounded-mine">
+                  {orders.map((item, index) => (
+                    <div
+                      className="d-flex justify-content-between"
+                      key={item.id}
+                    >
+                      <h5 className="fw-mine">Order : {index + 1}</h5>
+                      <p className="text-end">Rs {item.totals}</p>
                     </div>
-                    <span className="mx-2"></span>
-                    <button className="btn btn-sm py-2 btn-outline-success">
-                      {order.status}
-                    </button>
+                  ))}
+                  <hr />
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine">Total Orders Amount</h5>
+                    <p className="text-end">Rs {orderstotal}</p>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine mb-1">Service Charge (13%)</h5>
+                    <p className="text-end mb-1">+ Rs {serviceCharge()}</p>
+                  </div>
+                  <hr />
+                  <div className="d-flex justify-content-between">
+                    <h5 className="fw-mine">Total Paying Amount</h5>
+                    <p className="text-end">
+                      Rs {orderstotal + serviceCharge()}
+                    </p>
                   </div>
                 </div>
+                <div className="d-flex justify-content-between">
+                  {/* <div className="form-floating w-100 mt-4">
+                    <select
+                      className="form-select bg-white"
+                      id="category"
+                      aria-label="Floating label select example"
+                      value={method}
+                      onChange={(e) => handleChangeMethod(e)}
+                    >
+                      <option value="Manually paid">Manually paid</option>
+                      <option value="Esewa">Esewa</option>
+                      <option value="Mobile Banking">Mobile Banking</option>
+                    </select>
+                    <label htmlFor="floatingSelect">
+                      Select Payment Method
+                    </label>
+                  </div> */}
+                  <span className="mx-2"></span>
+                  <button
+                    className="btn bg-mine text-light btn-lg w-100 mt-4"
+                    onClick={(e) => handlePayment(e)}
+                  >
+                    Pay For The Orders Now
+                  </button>
+                </div>
               </div>
-            ))}
-          </div>
-          <div className="px-4 mt-5 p-4 bg-white rounded-mine">
-            {orders.map((item, index) => (
-              <div className="d-flex justify-content-between" key={item.id}>
-                <h5 className="fw-mine">Order : {index + 1}</h5>
-                <p className="text-end">Rs {item.totals}</p>
-              </div>
-            ))}
-            <hr />
-            <div className="d-flex justify-content-between">
-              <h5 className="fw-mine">Total Orders Amount</h5>
-              <p className="text-end">Rs {orderstotal}</p>
             </div>
-            <div className="d-flex justify-content-between">
-              <h5 className="fw-mine mb-1">Service Charge (13%)</h5>
-              <p className="text-end mb-1">+ Rs {serviceCharge()}</p>
-            </div>
-            <hr />
-            <div className="d-flex justify-content-between">
-              <h5 className="fw-mine">Total Paying Amount</h5>
-              <p className="text-end">Rs {orderstotal + serviceCharge()}</p>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between">
-            <div className="form-floating w-100 mt-4">
-              <select
-                className="form-select bg-white"
-                id="category"
-                aria-label="Floating label select example"
-                value={method}
-                onChange={(e) => handleChangeMethod(e)}
-              >
-                <option value="Manually paid">Manually paid</option>
-                <option value="Esewa">Esewa</option>
-                <option value="Mobile Banking">Mobile Banking</option>
-              </select>
-              <label htmlFor="floatingSelect">Select Payment Method</label>
-            </div>
-            <span className="mx-2"></span>
-            <button
-              className="btn bg-mine text-light btn-lg w-100 mt-4"
-              onClick={(e) => handlePayment(e)}
-            >
-              Pay For The Orders Now
-            </button>
           </div>
         </div>
       </section>

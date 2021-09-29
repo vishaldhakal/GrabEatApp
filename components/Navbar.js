@@ -1,9 +1,9 @@
 import Link from "./ActiveLink";
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
     <>
-      <nav className="navbar navbar-dark bg-white py-3 sticky-top">
+      <nav className={"navbar navbar-dark py-3 sticky-top " + props.shadow}>
         <div className="container-fluid d-flex justify-content-between">
           <div>
             <a href="/" className="navbar-brand text-dark">
