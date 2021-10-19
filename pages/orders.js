@@ -9,6 +9,7 @@ export default function Orders() {
   const [method, setMethod] = useState("Manually Paid");
   const [orderstotal, setOrderstotal] = useState(0);
   const [message, setMessage] = useState(null);
+  const [modalstat, setModalstat] = useState(false);
 
   function serviceCharge() {
     let charge = (13 / 100) * orderstotal;
@@ -87,6 +88,76 @@ export default function Orders() {
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
       <Navbar shadow="bg-light" />
+      {modalstat && (
+        <div className="modal">
+          <section className="modal-main rounded-3">
+            <div className="p-3 py-4">
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="fw-bold mb-0">Select Payment Method</p>
+                <button
+                  className="btn btn-outline-danger p-1 py-0"
+                  onClick={() => setModalstat(false)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-x"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                  </svg>
+                </button>
+              </div>
+              <div className="row row-cols-2 row-cols-md-4 p-3 mt-2 justify-content-center">
+                <div className="col p-3">
+                  <img
+                    src="/logos/cash.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+                <div className="col p-3">
+                  <img
+                    src="/logos/esewa.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+                <div className="col p-3">
+                  <img
+                    src="/logos/ime.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+                <div className="col p-3">
+                  <img
+                    src="/logos/ips.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+                <div className="col p-3">
+                  <img
+                    src="/logos/credit.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+                <div className="col p-3">
+                  <img
+                    src="/logos/bank.png"
+                    alt=""
+                    className="img-fluid p-3 shadow-sm rounded-mine"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
       <section className="py-3">
         <div className="container-fluid px-4">
           <div className="d-flex align-items-sm-center flex-column flex-sm-row mb-3">
@@ -203,8 +274,8 @@ export default function Orders() {
                 ))}
               </div>
             </div>
-            <div className="col-12 col-md-4 py-5">
-              <div className="myps3 shadow-sm p-3 rounded-mine">
+            <div className="col-12 col-md-4 pb-5">
+              <div className="myps3 border p-4 rounded-mine">
                 <div className="px-4 bg-white rounded-mine">
                   {orders.map((item, index) => (
                     <div
@@ -256,7 +327,7 @@ export default function Orders() {
                   <span className="mx-2"></span>
                   <button
                     className="btn bg-mine text-light btn-lg w-100 mt-4"
-                    onClick={(e) => handlePayment(e)}
+                    onClick={() => setModalstat(true)}
                   >
                     Pay For The Orders Now
                   </button>

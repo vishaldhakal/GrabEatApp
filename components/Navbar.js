@@ -26,12 +26,7 @@ export default function Navbar(props) {
               </li>
               <li className="nav-item me-3">
                 <Link href="/orders">
-                  <a className="nav-link">Orders</a>
-                </Link>
-              </li>
-              <li className="nav-item me-3">
-                <Link href="#">
-                  <a className="nav-link">Payment</a>
+                  <a className="nav-link">Orders and Payment</a>
                 </Link>
               </li>
               <li className="nav-item me-3">

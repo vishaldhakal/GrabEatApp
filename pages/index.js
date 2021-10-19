@@ -251,13 +251,32 @@ export default function Home() {
       <Head>
         <title>Grab Eat | Online Food Ordering</title>
       </Head>
-      <Navbar />
+      <Navbar shadow="bg-white" />
       <div
         className={hehehe}
         onClick={() => {
           cartSliderToggle();
         }}
       ></div>
+      {/* <div className="fix-bot shadow-sm">
+        <button
+          className="btn bg-mine2 py-0 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
+          type="button"
+          onClick={cartSliderToggle}
+        >
+          <div className={"add-to-cart-cover " + addcart.display}>
+            <img
+              src={addcart.image}
+              alt="food image"
+              className="add-to-cart-image"
+            />
+          </div>
+          <div>10 items Added to Cart |</div>
+          <span className="fw-mine p-2 ms-1 fss d-flex align-items-center btn btn-light my-2">
+            Confirm Order
+          </span>
+        </button>
+      </div> */}
       <section>
         <div className="row row-cols-2 g-0">
           <div className="col col-2 bg-mine3 position-relative">
@@ -541,7 +560,7 @@ export default function Home() {
               </div>
             )}
             <div className="my-2"></div>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-mine mx-0 pt-4 px-3">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xll-4 g-mine mx-0 pt-4 px-3">
               {loading && (
                 <div className="posabs text-center">
                   <div className="spinner-border" role="status"></div>
