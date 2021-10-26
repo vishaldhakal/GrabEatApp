@@ -143,12 +143,11 @@ body {
   max-width: 100px;
 }
 .card-img-top {
-  height: 100px;
   width: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 8px !important;
-  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
 .left-cart-image {
@@ -172,6 +171,19 @@ body {
   /* padding: 0.65rem; */
 }
 .btn-mine:hover {
+  background-color: #5c8d89;
+  color: rgb(255, 255, 255);
+  border-color: #5c8d89;
+}
+.btn-orange {
+  background-color: #5c8d89;
+  color: rgb(255, 255, 255);
+  border-color: #5c8d89;
+  font-weight: 600 !important;
+  border-radius: 5px !important;
+  /* padding: 0.65rem; */
+}
+.btn-orange:hover {
   background-color: #5c8d89;
   color: rgb(255, 255, 255);
   border-color: #5c8d89;
@@ -473,9 +485,7 @@ table tr th {
   animation: 1.5s shine linear infinite;
 }
 .is-loading .image {
-  height: 160px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  height: 100% !important;
 }
 
 .bagIcon___1Ywzd {
