@@ -138,7 +138,7 @@ export default function Home() {
       return (
         <button
           type="button"
-          className="btn btn-orange btn-sm py-2 w-100"
+          className="btn btn-mine btn-sm py-2 w-100"
           onClick={() => {
             addToCart(item);
             beforeCart(item);
@@ -186,9 +186,9 @@ export default function Home() {
 
   const listItemsToBuy = () =>
     dataa.map((item) => (
-      <div className="col d-grid align-items-strech" key={item.id}>
+      <div className="col" key={item.id}>
         <div className="card bg-white border-0 rounded-mine shadow-sm is-loading">
-          {/* <img
+          <img
             src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
             className="card-img-top image"
             alt="Food Image Loading"
@@ -201,27 +201,6 @@ export default function Home() {
             <p className="card-text">{item.small_note}</p>
             <div className="d-flex align-items-center justify-content-between">
               {inCart(item)}
-            </div>
-          </div> */}
-          <div className="row row-cols-2">
-            <div className="col-4 is-loading hh">
-              <img
-                src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
-                className="card-img-top image"
-                alt="Food Image Loading"
-              />
-            </div>
-            <div className="col-8">
-              <div className="card-body">
-                <div className="d-flex align-items-center justify-content-between">
-                  <h5 className="card-title fw-bold">{item.name}</h5>
-                  <h5 className="card-title fw-bold">Rs {item.price}</h5>
-                </div>
-                <p className="card-text">{item.small_note}</p>
-                <div className="d-flex align-items-center justify-content-between">
-                  {inCart(item)}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -299,8 +278,8 @@ export default function Home() {
         </button>
       </div> */}
       <section>
-        <div className="row row-cols-1 row-cols-md-2 g-0">
-          <div className="col col-12 col-md-2 d-none d-md-block bg-mine3 position-relative">
+        <div className="row row-cols-2 g-0">
+          <div className="col col-2 bg-mine3 position-relative">
             <div className="d-flex flex-column py-4 px-3 leftbar hei">
               <h5 className="mb-4 pb-2 desm">Menu Categories</h5>
               <button
@@ -354,10 +333,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="col col-12 col-md-10 position-relative">
+          <div className="col col-10 position-relative">
             <div className="py-4 bg-mine3 w-100 hei3">
-              <div className="row row-cols-1 row-cols-md-5 gx-md-5 mx-0">
-                <div className="d-none d-md-block col-12 col-md-5">
+              <div className="row row-cols-5 gx-5 mx-0">
+                <div className="col-5">
                   <form className="d-flex">
                     <div className="input-group">
                       <input
@@ -385,7 +364,7 @@ export default function Home() {
                     </div>
                   </form>
                 </div>
-                <div className="col-6 col-md-3">
+                <div className="col-3">
                   <select
                     className="form-select py-3 shadow-sm border-0"
                     id="sorting"
@@ -397,7 +376,7 @@ export default function Home() {
                     <option value="2">Price High to Low</option>
                   </select>
                 </div>
-                <div className="col-6 col-md-4 d-flex justify-content-end">
+                <div className="col-4 d-flex justify-content-end">
                   <button
                     className="btn bg-mine2 py-0 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
                     type="button"
@@ -581,7 +560,7 @@ export default function Home() {
               </div>
             )}
             <div className="my-2"></div>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xll-3 g-mine mx-0 pt-4 px-md-3">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xll-4 g-mine mx-0 pt-4 px-3">
               {loading && (
                 <div className="posabs text-center">
                   <div className="spinner-border" role="status"></div>
