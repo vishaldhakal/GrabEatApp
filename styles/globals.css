@@ -600,3 +600,11 @@ table tr th {
     background: rgba(0, 0, 0, 0.568);
   }
 }
+
+@media (max-width: 700px) {
+  .hei3 {
+    position: sticky;
+    top: 3.8rem;
+    z-index: 1 !important;
+  }
+}
