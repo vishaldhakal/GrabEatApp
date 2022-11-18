@@ -1800,7 +1800,7 @@ table tr th {
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
 }
-.modal {
+/* .modal {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -1818,7 +1818,7 @@ table tr th {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 @keyframes shine {
   to {
     background-position-x: -200%;
@@ -1864,4 +1864,62 @@ table tr th {
   object-fit: cover;
   object-position: center;
   border-radius: 50% !important;
+}
+
+.no-image {
+  height: 200px !important;
+  width: 200px !important;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.form-control {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+label {
+  font-weight: bold !important;
+}
+
+.form-control:active,
+.form-control:focus {
+  border-color: black !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.no-image-bill {
+  height: 150px !important;
+  width: 150px !important;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.remarks {
+  height: 100px !important;
+}
+
+.btn-close {
+  width: 3em !important;
+  height: 3em !important;
+}
+
+.btn {
+  border-radius: 0.175rem !important;
+}
+.pay-img{
+  width: 120px;
+}
+#main h4{
+  color: black !important;
+  font-weight: 800 !important;
+  font-size: 2rem !important;
+}
+table tr th{
+  font-weight: 800 !important;
 }

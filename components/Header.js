@@ -6,8 +6,7 @@ export default function Header(props) {
         className="header fixed-top d-flex align-items-center"
       >
         <div className="d-flex align-items-center justify-content-between">
-          <a href="index.html" className="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="" />
+          <a href="/admin" className="logo d-flex align-items-center">
             <span className="d-none d-lg-block">Griham Admin</span>
           </a>
         </div>
@@ -31,7 +30,9 @@ export default function Header(props) {
         <nav className="header-nav ms-auto">
           <ul className="d-flex align-items-center">
             <li className="nav-item d-block d-lg-none">
-              <a className="nav-link nav-icon search-bar-toggle " href="#"></a>
+              <a className="nav-link nav-icon search-bar-toggle " href="#">
+                <i className="bi bi-search"></i>
+              </a>
             </li>
 
             <li className="nav-item dropdown pe-3">
@@ -46,7 +47,7 @@ export default function Header(props) {
                   className="rounded-circle"
                 />
                 <span className="d-none d-md-block dropdown-toggle ps-2">
-                  K. Anderson
+                  Admin
                 </span>
               </a>
 
@@ -54,7 +55,7 @@ export default function Header(props) {
                 <li>
                   <a
                     className="dropdown-item d-flex align-items-center"
-                    href="pages-faq.html"
+                    href="/help"
                   >
                     <span>Need Help?</span>
                   </a>
