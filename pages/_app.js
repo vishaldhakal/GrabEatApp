@@ -6,7 +6,7 @@ import axios from "axios";
 
 function MyApp({ Component, pageProps }) {
   const [data, setData] = useState(null);
-  useEffect(() => {
+  /* useEffect(() => {
     if (data) {
       const imageele = document.querySelector(".mujiimage");
       var myVar = setInterval(myTimer, 4000);
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
         }
       }
     }
-  }, [data]);
+  }, [data]); */
 
   useEffect(() => {
     var configg = {
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const adimg = document.getElementById("adimg");
     const closeadbtn = document.getElementById("closead");
     var timer;
@@ -93,7 +93,7 @@ function MyApp({ Component, pageProps }) {
         adimg.classList.remove("d-none");
       }, millisecBeforeRedirect);
     });
-  }, []);
+  }, []); */
   return (
     <AppWrapper>
       <>

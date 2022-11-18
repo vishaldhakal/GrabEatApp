@@ -34,13 +34,14 @@ export default function Orders() {
     var configg = {
       method: "POST",
       credentials: "include",
-      url: `https://grabeatnp.herokuapp.com/api/api-token-auth/`,
+      url: `http://127.0.0.1:8000/api/api-token-auth/`,
       headers: { "Content-Type": "application/json" },
       data: payload,
     };
     axios(configg)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_type", res.data.user_type);
         localStorage.setItem("username", credentials.username);
         setLoginerror("Sucessfully Logged in");
         setcredentials({

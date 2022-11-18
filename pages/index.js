@@ -278,8 +278,8 @@ export default function Home() {
         </button>
       </div> */}
       <section>
-        <div className="row row-cols-1 row-cols-md-2 g-0">
-          <div className="col col-2 d-none d-md-block bg-mine3 position-relative">
+        <div className="row row-cols-2 g-0">
+          <div className="col col-2 bg-mine3 position-relative">
             <div className="d-flex flex-column py-4 px-3 leftbar hei">
               <h5 className="mb-4 pb-2 desm">Menu Categories</h5>
               <button
@@ -333,10 +333,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="col col-12 col-md-10 position-relative">
+          <div className="col col-10 position-relative">
             <div className="py-4 bg-mine3 w-100 hei3">
-              <div className="row row-cols-2 row-cols-md-5 gx-5 mx-0">
-                <div className="col-12 d-none d-md-block col-md-5">
+              <div className="row row-cols-5 gx-5 mx-0">
+                <div className="col-5">
                   <form className="d-flex">
                     <div className="input-group">
                       <input
@@ -364,7 +364,7 @@ export default function Home() {
                     </div>
                   </form>
                 </div>
-                <div className="col-6 col-md-3">
+                <div className="col-3">
                   <select
                     className="form-select py-3 shadow-sm border-0"
                     id="sorting"
@@ -376,7 +376,7 @@ export default function Home() {
                     <option value="2">Price High to Low</option>
                   </select>
                 </div>
-                <div className="col-6 col-md-4 d-flex justify-content-end">
+                <div className="col-4 d-flex justify-content-end">
                   <button
                     className="btn bg-mine2 py-0 text-light fw-mine d-flex align-items-center justify-content-center cart-button position-relative"
                     type="button"
