@@ -11,13 +11,13 @@ export default function Sidebar(props) {
           </li>
 
           <li className="nav-item">
-            <a href="#" className="nav-link collapsed">
+            <a href="/admin/manage-order" className="nav-link collapsed">
               <i className="bi bi-cart"></i>
               <span>Manage Order</span>
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link collapsed">
+            <a href="/admin/payment-history" className="nav-link collapsed">
               <i className="bi bi-credit-card"></i>
               <span>Payments</span>
             </a>
