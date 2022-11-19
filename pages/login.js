@@ -34,7 +34,7 @@ export default function Orders() {
     var configg = {
       method: "POST",
       credentials: "include",
-      url: `http://127.0.0.1:8000/api/api-token-auth/`,
+      url: `https://grabeatnp.herokuapp.com/api/api-token-auth/`,
       headers: { "Content-Type": "application/json" },
       data: payload,
     };
