@@ -38,7 +38,7 @@ export default function Orders() {
     var payload = JSON.stringify(payment);
     var configg = {
       method: "POST",
-      url: `https://grabeatnp.herokuapp.com/api/payorders/`,
+      url: `http://127.0.0.1:8000/api/payorders/`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -64,7 +64,7 @@ export default function Orders() {
     } else {
       var configg = {
         method: "GET",
-        url: `https://grabeatnp.herokuapp.com/api/orderslists/`,
+        url: `http://127.0.0.1:8000/api/orderslists/`,
         headers: {
           "Content-Type": "text/plain",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -81,6 +81,29 @@ export default function Orders() {
         });
     }
   }, [message]);
+
+  const handleCompleteOrder = (e, oid) => {
+    e.target.innerHTML = `Copleting...`;
+    var configg = {
+      method: "POST",
+      url: `http://127.0.0.1:8000/api/complete-order/${oid}/`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      mode: "no-cors",
+    };
+    axios(configg)
+      .then((res) => {
+        console.log(res.data);
+        setMessage("Order Sucessfully Completed");
+        route.push("/orders");
+      })
+      .catch(function (error) {
+        console.log(error);
+        setMessage("Error Completing Order");
+      });
+  };
 
   return (
     <>
@@ -219,11 +242,12 @@ export default function Orders() {
                       <div className="d-flex justify-content-between align-items-center border-bottom pb-2">
                         <div>
                           <h5 className="fw-mine mb-0">Order {index + 1}</h5>
-                          <p className="mb-0 mt-2 px-2 bg-light-green">
-                            Payment : {order.payment_status}{" "}
-                            {checkStatus(order.payment_status) &&
-                              order.payment_method}
-                          </p>
+                          <h5 className="fw-mine mb-0">
+                            Table : {order.table.table_name}
+                          </h5>
+                          <h5 className="fw-mine mb-0">
+                            Status : {order.status}
+                          </h5>
                         </div>
                         <img
                           src="/avatar.png"
@@ -238,7 +262,7 @@ export default function Orders() {
                         >
                           <img
                             src={
-                              "https://grabeatnp.herokuapp.com" +
+                              "http://127.0.0.1:8000" +
                               item.food_item.thumbnail_image
                             }
                             alt=""
@@ -265,8 +289,14 @@ export default function Orders() {
                           </p>
                         </div>
                         <span className="mx-2"></span>
-                        <button className="btn btn-sm py-2 btn-success">
-                          {order.status}
+                        <button className="btn btn-sm py-2 btn-danger">
+                          Cancle Order
+                        </button>
+                        <button
+                          className="btn btn-sm py-2 btn-success"
+                          onClick={(e) => handleCompleteOrder(e, order.id)}
+                        >
+                          Complete Order
                         </button>
                       </div>
                     </div>

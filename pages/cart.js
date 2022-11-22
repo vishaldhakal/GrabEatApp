@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 export default function Cart() {
   const [message, setMessage] = useState(null);
+  const [dataa, setDataa] = useState(null);
   const route = useRouter();
   const {
     cart,
@@ -15,6 +16,10 @@ export default function Cart() {
     removeFromCart,
     decreaseItem,
     serviceCharge,
+    table,
+    handleOrdernotechange,
+    ordernote,
+    handleTablechange,
     totalAmount,
   } = useAppContext();
 
@@ -24,22 +29,50 @@ export default function Cart() {
     }
   }, []);
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      route.push("/login");
+    } else {
+      var configg = {
+        method: "GET",
+        url: `http://127.0.0.1:8000/api/tablelists/`,
+        headers: {
+          "Content-Type": "text/plain",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+        mode: "no-cors",
+      };
+      axios(configg)
+        .then((res) => {
+          setDataa(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, []);
+
   const handleSubmission = (e) => {
     e.target.innerHTML = `Submitting...`;
     if (cart.length == 0) {
       setMessage("No any cart items for submission");
     } else {
-      var payload = JSON.stringify(cart);
+      var payload = {
+        cartt: cart,
+        table: table,
+        ordernote: ordernote,
+      };
+      var payload2 = JSON.stringify(payload);
       console.log(payload);
       var configg = {
         method: "POST",
-        url: `https://grabeatnp.herokuapp.com/api/submitcart/`,
+        url: `http://127.0.0.1:8000/api/submitcart/`,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
         },
         mode: "no-cors",
-        data: payload,
+        data: payload2,
       };
       axios(configg)
         .then((res) => {
@@ -156,7 +189,7 @@ export default function Cart() {
                     <div className="col-5 d-flex align-items-center">
                       <img
                         src={
-                          "https://grabeatnp.herokuapp.com" +
+                          "https://127.0.0.1:8000" +
                           cartitem.item.thumbnail_image
                         }
                         alt="..."
@@ -217,6 +250,31 @@ export default function Cart() {
                   <div className="col-1">-</div>
                 </div>
               </div>
+            </div>
+            <div className="col-3">
+              <select
+                className="form-select py-3 shadow-sm border-0"
+                id="sorting"
+                aria-label="Floating label select example2"
+                value={table}
+                onChange={(e) => handleTablechange(e.target.value)}
+              >
+                {dataa &&
+                  dataa.map((item) => (
+                    <option value={item.table_name} key={item.table_name}>
+                      {item.table_name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="col-3">
+              <input
+                type="text"
+                name="sdc"
+                id="dd"
+                onChange={(e) => handleOrdernotechange(e.target.value)}
+                value={ordernote}
+              ></input>
             </div>
             <div className="col-12 col-md-4 py-5">
               <div className="myps3">

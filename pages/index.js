@@ -29,12 +29,12 @@ export default function Home() {
   const beforeCart = (ite) => {
     setaddcart({
       display: "",
-      image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
+      image: "http://127.0.0.1:8000" + ite.thumbnail_image,
     });
     setTimeout(function () {
       setaddcart({
         display: "d-none",
-        image: "https://grabeatnp.herokuapp.com" + ite.thumbnail_image,
+        image: "http://127.0.0.1:8000" + ite.thumbnail_image,
       });
     }, 600);
   };
@@ -47,7 +47,7 @@ export default function Home() {
       var payload = JSON.stringify(cart);
       var configg = {
         method: "POST",
-        url: `https://grabeatnp.herokuapp.com/api/submitcart/`,
+        url: `http://127.0.0.1:8000/api/submitcart/`,
         headers: {
           "Content-Type": "application/json",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -190,7 +190,7 @@ export default function Home() {
       <div className="col" key={item.id}>
         <div className="card bg-white border-0 rounded-mine shadow-sm is-loading">
           <img
-            src={"https://grabeatnp.herokuapp.com" + item.thumbnail_image}
+            src={"http://127.0.0.1:8000" + item.thumbnail_image}
             className="card-img-top image"
             alt="Food Image Loading"
           />
@@ -215,7 +215,7 @@ export default function Home() {
       setLoading(true);
       var configg = {
         method: "GET",
-        url: `https://grabeatnp.herokuapp.com/api/foodlists_search/?category=${credentials.category}&sorting=${credentials.sorting}`,
+        url: `http://127.0.0.1:8000/api/foodlists_search/?category=${credentials.category}&sorting=${credentials.sorting}`,
         headers: {
           "Content-Type": "text/plain",
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -231,7 +231,7 @@ export default function Home() {
         });
       var configg2 = {
         method: "GET",
-        url: `https://grabeatnp.herokuapp.com/api/categorylists/`,
+        url: `http://127.0.0.1:8000/api/categorylists/`,
         mode: "no-cors",
       };
       axios(configg2)

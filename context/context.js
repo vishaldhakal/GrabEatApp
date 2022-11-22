@@ -4,6 +4,15 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   const [cart, setCart] = useState([]);
+  const [table, setTable] = useState(null);
+  const [ordernote, setOrdernote] = useState(null);
+
+  const handleTablechange = (val) => {
+    setTable(val);
+  };
+  const handleOrdernotechange = (val) => {
+    setOrdernote(val);
+  };
 
   const addToCart = (item) => {
     setCart((prevState) => {
@@ -79,6 +88,10 @@ export function AppWrapper({ children }) {
     decreaseItem,
     serviceCharge,
     totalAmount,
+    handleOrdernotechange,
+    handleTablechange,
+    table,
+    ordernote,
   };
   return (
     <AppContext.Provider value={hahavalues}>{children}</AppContext.Provider>

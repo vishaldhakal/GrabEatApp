@@ -34,7 +34,7 @@ export default function Orders() {
     var configg = {
       method: "POST",
       credentials: "include",
-      url: `https://grabeatnp.herokuapp.com/api/api-token-auth/`,
+      url: `http://127.0.0.1:8000/api/api-token-auth/`,
       headers: { "Content-Type": "application/json" },
       data: payload,
     };
@@ -52,7 +52,7 @@ export default function Orders() {
         route.push("/");
       })
       .catch(function (error) {
-        console.log(error.response.status);
+        console.log(error);
         if (error.response.status === 401) {
           setLoginerror("Email or Password Incorrect");
         } else if (error.response.status === 404) {
